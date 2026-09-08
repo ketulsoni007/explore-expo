@@ -1,14 +1,5 @@
-import { View, Text } from 'react-native'
-import React from 'react'
-import HomePage from '@/view/Home/HomePage'
-import SafeAreaWrapper from '@/components/SafeAreaWrapper'
+import { Redirect } from "expo-router";
 
-const index = () => {
-  return (
-    <SafeAreaWrapper>
-      <HomePage />
-    </SafeAreaWrapper>
-  )
+export default function Index() {
+  return <Redirect href="/(drawer)/(tabs)" />;
 }
-
-export default index
