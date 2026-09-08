@@ -72,7 +72,7 @@ const NearBySection = () => {
   const currentData = activeTab === 'hotels' ? HOTELS_DATA : RESTAURANTS_DATA;
 
   return (
-    <View style={[styles.container,styles.cardContainer]}>
+    <View style={[styles.container, styles.cardContainer]}>
       <View style={styles.headerRow}>
         <View style={styles.titleContainer}>
           <Text style={styles.sectionTitle}>Nearby Partners</Text>
@@ -81,8 +81,9 @@ const NearBySection = () => {
             <Text style={styles.locationText}>Ahmedabad, Gujarat</Text>
           </View>
         </View>
-        <TouchableOpacity activeOpacity={0.7}>
-          <Text style={styles.viewAllText}>View All {'>'}</Text>
+        <TouchableOpacity activeOpacity={0.7} style={styles.viewAllButton}>
+          <Text style={styles.viewAllText}>View All</Text>
+          <Ionicons name="chevron-forward" size={16} color="#2563EB" />
         </TouchableOpacity>
       </View>
       <View style={styles.mapWrapper}>
@@ -98,7 +99,7 @@ const NearBySection = () => {
             <FontAwesome5
               name="bed"
               size={16}
-              color={activeTab === 'hotels' ?  '#EA580C' : '#94A3B8'}
+              color={activeTab === 'hotels' ? '#EA580C' : '#94A3B8'}
             />
             <Text style={[styles.tabText, activeTab === 'hotels' && styles.activeTabText]}>
               Hotels
@@ -153,7 +154,7 @@ const NearBySection = () => {
 const styles = StyleSheet.create({
   container: {
     marginHorizontal: 16,
-    marginVertical: 12,
+    marginVertical: 2,
   },
   headerRow: {
     flexDirection: 'row',
@@ -173,12 +174,17 @@ const styles = StyleSheet.create({
   },
   locationContainer: {
     flexDirection: 'row',
-    alignItems: 'center',
+    alignItems: 'baseline',
     gap: 2,
   },
   locationText: {
     fontSize: 10,
     color: '#64748B',
+  },
+  viewAllButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    gap: 2,
   },
   viewAllText: {
     fontSize: 13,
@@ -195,11 +201,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    elevation: 2,
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 1 },
-    shadowOpacity: 0.05,
-    shadowRadius: 4,
+    borderWidth:1,
+    borderColor:'#EEE'
   },
   tabContainer: {
     flexDirection: 'row',
@@ -218,7 +221,7 @@ const styles = StyleSheet.create({
     borderBottomColor: 'transparent',
   },
   activeTabButton: {
-    borderBottomColor:  '#EA580C',
+    borderBottomColor: '#EA580C',
   },
   tabText: {
     fontSize: 14,
@@ -226,7 +229,7 @@ const styles = StyleSheet.create({
     color: '#64748B',
   },
   activeTabText: {
-    color:  '#EA580C',
+    color: '#EA580C',
   },
   activeTabTextRestaurant: {
     color: '#EA580C',

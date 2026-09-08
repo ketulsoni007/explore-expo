@@ -1,5 +1,6 @@
+import { AntDesign } from '@expo/vector-icons';
 import React from 'react';
-import { Platform, StyleSheet, View } from 'react-native';
+import { Platform, StyleSheet, TouchableOpacity, View } from 'react-native';
 import { WebView } from 'react-native-webview';
 
 const openFreeMapHtml = `
@@ -63,6 +64,9 @@ export const MapSection = () => {
           javaScriptEnabled={true}
           domStorageEnabled={true}
         />
+        <TouchableOpacity style={styles.locateButton} activeOpacity={0.8}>
+          <AntDesign name="aim" size={20} color="#FFFFFF" />
+        </TouchableOpacity>
       </View>
     );
   }
@@ -82,6 +86,9 @@ export const MapSection = () => {
           sandbox="allow-scripts allow-modals allow-same-origin"
         />
       )}
+      <TouchableOpacity style={styles.locateButton} activeOpacity={0.8}>
+        <AntDesign name="aim" size={20} color="#FFFFFF" />
+      </TouchableOpacity>
     </View>
   );
 };
@@ -92,10 +99,27 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     overflow: 'hidden',
     backgroundColor: '#f0f0f0',
+    position: 'relative',
   },
   map: {
     width: '100%',
     height: '100%',
+  },
+  locateButton: {
+    position: 'absolute',
+    bottom: 12,
+    right: 12,
+    width: 40,
+    height: 40,
+    borderRadius: 20,
+    backgroundColor: '#1E3A8A',
+    alignItems: 'center',
+    justifyContent: 'center',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 4,
   },
 });
 
