@@ -28,8 +28,8 @@ export default function TabsLayout() {
           height: 64,
           paddingTop: 8,
           paddingBottom: 8,
-          borderRadius: 24,
-          backgroundColor: "#18181B",
+          borderRadius: 14,
+          backgroundColor: "rgba(240, 245, 248, 0.95)",
           borderTopWidth: 0,
           shadowColor: "#000",
           shadowOffset: { width: 0, height: 4 },
@@ -54,11 +54,11 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="services"
+        name="activities"
         options={{
-          title: "Services",
+          title: "Activities",
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? "grid" : "grid-outline"} size={22} color={color} />
+            <Ionicons name={focused ? "analytics" : "analytics-outline"} size={22} color={color} />
           ),
         }}
       />
@@ -74,11 +74,11 @@ export default function TabsLayout() {
         }}
       />
       <Tabs.Screen
-        name="activities"
+        name="services"
         options={{
-          title: "Activities",
+          title: "Services",
           tabBarIcon: ({ color, focused }) => (
-            <Ionicons name={focused ? "analytics" : "analytics-outline"} size={22} color={color} />
+            <Ionicons name={focused ? "grid" : "grid-outline"} size={22} color={color} />
           ),
         }}
       />

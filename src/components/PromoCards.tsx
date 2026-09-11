@@ -1,3 +1,4 @@
+import { router } from "expo-router";
 import { StyleSheet, View } from "react-native";
 import FreeFoodPromoCard from "./FreeFoodPromoCard";
 import FreeStayPromoCard from "./FreeStayPromoCard";
@@ -5,8 +6,8 @@ import FreeStayPromoCard from "./FreeStayPromoCard";
 const PromoCards = () => {
   return (
     <View style={styles.row}>
-      <FreeFoodPromoCard onPress={() => {}} />
-      <FreeStayPromoCard onPress={() => {}} />
+      <FreeFoodPromoCard onPress={() => router.push('/(drawer)/(tabs)/search')} />
+      <FreeStayPromoCard onPress={() => router.push('/(drawer)/(tabs)/search')} />
     </View>
   );
 };

@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
+import { Redirect } from "expo-router";
 
-export default function FreeFoodScreen() {
-  return (
-    <View>
-      <Text>Free Food</Text>
-    </View>
-  );
+export default function FreeFood() {
+  return <Redirect href="/(drawer)/(tabs)/search" />;
 }

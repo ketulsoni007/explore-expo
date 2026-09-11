@@ -1,5 +1,6 @@
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
+import { useState } from "react";
 import {
   Image,
   ScrollView,
@@ -9,7 +10,6 @@ import {
   useWindowDimensions,
   View,
 } from "react-native";
-import DriverAvailability from "../DriverAvailibility";
 
 const COLORS = {
   navy: "#1E3A8A",
@@ -22,6 +22,9 @@ const COLORS = {
   border: "#E5E7EB",
   bannerBg: "#EEF2FF",
   logoutBg: "#FEE2E2",
+  bronze: "#CD7F32",
+  silver: "#A8A9AD",
+  gold: "#D4AF37",
 };
 
 type MenuItem = {
@@ -32,6 +35,12 @@ type MenuItem = {
   circleBg?: string;
 };
 
+const TIERS = [
+  { key: "bronze", label: "Bronze", color: COLORS.bronze },
+  { key: "silver", label: "Silver", color: COLORS.silver },
+  { key: "gold", label: "Gold", color: COLORS.gold },
+];
+
 const topMenu: MenuItem[] = [
   { label: "Home", icon: "home", route: "/(drawer)/(tabs)", iconColor: COLORS.navy },
   { label: "Free Food", icon: "restaurant", route: "/(drawer)/free-food", iconColor: "#FFFFFF", circleBg: COLORS.orange },
@@ -41,7 +50,7 @@ const topMenu: MenuItem[] = [
 ];
 
 const bookingMenu: MenuItem[] = [
-  { label: "My Bookings", icon: "calendar", route: "/(drawer)/my-bookings", iconColor: COLORS.blue },
+  { label: "My Bookings", icon: "medal", route: "/(drawer)/my-bookings", iconColor: COLORS.blue },
   { label: "My Vehicle", icon: "car-sport", route: "/(drawer)/my-vehicle", iconColor: COLORS.green },
   { label: "Wallet", icon: "wallet", route: "/(drawer)/wallet", iconColor: COLORS.blue },
 ];
@@ -56,9 +65,21 @@ const DrawerContent = (props: any) => {
   const drawerWidth = screenWidth * 0.82;
   const logoWidth = drawerWidth * 1;
 
+  const [isTierOpen, setIsTierOpen] = useState(false);
+
   const navigateTo = (route: string) => {
     props.navigation.closeDrawer();
     router.push(route as any);
+  };
+
+  const toggleTierAccordion = () => {
+    setIsTierOpen((prev) => !prev);
+  };
+
+  const onTierPress = (tierKey: string) => {
+    // No redirect for now
+    console.log("Tier selected:", tierKey);
+    setIsTierOpen(false);
   };
 
   const renderMenuItem = (item: MenuItem) => (
@@ -82,6 +103,42 @@ const DrawerContent = (props: any) => {
     </TouchableOpacity>
   );
 
+  const renderTierAccordion = (item: MenuItem) => (
+    <View key={item.label}>
+      <TouchableOpacity
+        style={styles.menuItem}
+        activeOpacity={0.6}
+        onPress={toggleTierAccordion}
+      >
+        <View style={styles.iconPlain}>
+          <Ionicons name={item.icon} size={22} color={item.iconColor} />
+        </View>
+        <Text style={styles.menuText}>Tier</Text>
+        <Ionicons
+          name={isTierOpen ? "chevron-up" : "chevron-down"}
+          size={18}
+          color="#C4C7CD"
+        />
+      </TouchableOpacity>
+
+      {isTierOpen && (
+        <View style={styles.tierContainer}>
+          {TIERS.map((tier) => (
+            <TouchableOpacity
+              key={tier.key}
+              style={styles.tierItem}
+              activeOpacity={0.6}
+              onPress={() => onTierPress(tier.key)}
+            >
+              <View style={[styles.tierDot, { backgroundColor: tier.color }]} />
+              <Text style={styles.tierLabel}>{tier.label}</Text>
+            </TouchableOpacity>
+          ))}
+        </View>
+      )}
+    </View>
+  );
+
   return (
     <ScrollView
       style={styles.container}
@@ -89,12 +146,11 @@ const DrawerContent = (props: any) => {
       contentContainerStyle={{ paddingBottom: 24 }}
     >
       <Image
-        source={require("@/assets/images/sidebar-logo.jpg")}
-        style={[{ width: logoWidth, height: 198, marginTop: 50 }]}
+        source={require("@/assets/images/sidebar-logo.jpeg")}
+        style={[{ width: logoWidth, height: 175, marginTop: 5 }]}
         resizeMode="contain"
       />
       <View style={styles.content}>
-        <DriverAvailability fromSidebar={true} />
         <TouchableOpacity
           style={styles.profileCard}
           activeOpacity={0.7}
@@ -118,22 +174,15 @@ const DrawerContent = (props: any) => {
         </TouchableOpacity>
         <View style={styles.menuSection}>
           {topMenu.map(renderMenuItem)}
-          <TouchableOpacity
-            style={styles.menuItem}
-            activeOpacity={0.6}
-            onPress={() => navigateTo("/(drawer)/sos")}
-          >
-            <View style={styles.sosBadge}>
-              <Text style={styles.sosBadgeText}>SOS</Text>
-            </View>
-            <Text style={[styles.menuText, { color: COLORS.red, fontWeight: "700" }]}>
-              SOS / Emergency
-            </Text>
-            <Ionicons name="chevron-forward" size={18} color="#C4C7CD" />
-          </TouchableOpacity>
         </View>
         <View style={styles.divider} />
-        <View style={styles.menuSection}>{bookingMenu.map(renderMenuItem)}</View>
+        <View style={styles.menuSection}>
+          {bookingMenu.map((item) =>
+            item.label === "My Bookings"
+              ? renderTierAccordion(item)
+              : renderMenuItem(item)
+          )}
+        </View>
         <View style={styles.divider} />
         <View style={styles.menuSection}>{supportMenu.map(renderMenuItem)}</View>
         <View style={styles.infoBanner}>
@@ -201,7 +250,7 @@ const styles = StyleSheet.create({
     borderColor: COLORS.border,
     borderRadius: 14,
     padding: 12,
-    marginBottom: 16,
+    marginBottom: 8,
   },
   avatarCircle: {
     width: 52,
@@ -283,6 +332,25 @@ const styles = StyleSheet.create({
     height: 1,
     backgroundColor: COLORS.border,
     marginVertical: 8,
+  },
+  tierContainer: {
+    paddingLeft: 44,
+    paddingBottom: 6,
+  },
+  tierItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 9,
+  },
+  tierDot: {
+    width: 8,
+    height: 8,
+    borderRadius: 4,
+    marginRight: 10,
+  },
+  tierLabel: {
+    fontSize: 13,
+    color: "#374151",
   },
   infoBanner: {
     flexDirection: "row",

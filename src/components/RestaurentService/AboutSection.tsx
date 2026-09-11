@@ -1,0 +1,35 @@
+import { StyleSheet, Text, View } from 'react-native';
+import { colors } from './colors';
+
+const AboutSection = () => {
+  return (
+    <View style={styles.container}>
+      <Text style={styles.heading}>About This Service</Text>
+      <Text style={styles.body}>
+        Miles Assist partners with trusted restaurants and dhabas to provide free meals to
+        eligible drivers on the road. Healthy, hygienic and driver-friendly food options to keep
+        you fueled and going.
+      </Text>
+    </View>
+  );
+};
+
+const styles = StyleSheet.create({
+  container: {
+    paddingHorizontal: 20,
+    marginTop: 24,
+  },
+  heading: {
+    fontSize: 19,
+    fontWeight: '800',
+    color: colors.textDark,
+    marginBottom: 10,
+  },
+  body: {
+    fontSize: 14.5,
+    lineHeight: 22,
+    color: colors.textMuted,
+  },
+});
+
+export default AboutSection;

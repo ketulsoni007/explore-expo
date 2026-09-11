@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
+import ActivitiesView from "@/components/activities";
 
 export default function ActivitiesScreen() {
-  return (
-    <View>
-      <Text>Activities</Text>
-    </View>
-  );
+  return <ActivitiesView />;
 }

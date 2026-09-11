@@ -1,37 +1,59 @@
 import DrawerContent from "@/components/drawer/DrawerContent";
 import { Ionicons } from "@expo/vector-icons";
+import { router } from "expo-router";
 import { Drawer } from "expo-router/drawer";
-import { Image, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Image, Pressable, StyleSheet, TouchableOpacity, View } from "react-native";
 
 const Logo = () => (
-  <Image
-    source={require("@/assets/images/mile-logo.png")}
-    style={styles.logo}
-    resizeMode="contain"
-  />
+  <Pressable onPress={() => router.push('/(drawer)/(tabs)')}>
+    <Image
+      source={require("@/assets/images/mile-logo.png")}
+      style={styles.logo}
+      resizeMode="contain"
+    />
+  </Pressable>
 );
 
-const NotificationBell = () => {
+const HeaderRight = () => {
   const hasUnreadNotifications = true;
 
-  const onNotificationPress = () => {};
+  const onLanguagePress = () => {
+    // Handle language toggle / modal
+  };
+
+  const onNotificationPress = () => {
+    // Navigate to notifications screen or handle click
+  };
 
   return (
-    <TouchableOpacity
-      onPress={onNotificationPress}
-      hitSlop={10}
-      style={styles.iconContainer}
-    >
-      <Ionicons
-        name="notifications-outline"
-        size={26}
-        color="#000"
-      />
+    <View style={styles.headerRightContainer}>
+      {/* Language Icon */}
+      <TouchableOpacity
+        onPress={onLanguagePress}
+        hitSlop={8}
+        style={styles.iconContainer}
+      >
+        <Ionicons
+          name="language-outline"
+          size={24}
+          color="#000"
+        />
+      </TouchableOpacity>
 
-      {hasUnreadNotifications && (
-        <View style={styles.badge} />
-      )}
-    </TouchableOpacity>
+      {/* Notification Bell */}
+      <TouchableOpacity
+        onPress={onNotificationPress}
+        hitSlop={8}
+        style={styles.iconContainer}
+      >
+        <Ionicons
+          name="notifications-outline"
+          size={24}
+          color="#000"
+        />
+        {hasUnreadNotifications && <View style={styles.badge} />}
+      </TouchableOpacity>
+    </View>
   );
 };
 
@@ -41,7 +63,7 @@ export default function DrawerLayout() {
       drawerContent={(props) => <DrawerContent {...props} />}
       screenOptions={{
         headerTitle: () => <Logo />,
-        headerRight: () => <NotificationBell />,
+        headerRight: () => <HeaderRight />,
         drawerStyle: {
           width: "82%",
         },
@@ -140,20 +162,26 @@ export default function DrawerLayout() {
 
 const styles = StyleSheet.create({
   logo: {
-    width: 150,
-    height: 40,
+    width: 140,
+    height: 38,
+  },
+
+  headerRightContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingRight: 12,
   },
 
   iconContainer: {
     position: "relative",
-    marginRight: 16,
-    padding: 5,
+    padding: 6,
+    marginLeft: 8,
   },
 
   badge: {
     position: "absolute",
-    top: 1,
-    right: 2,
+    top: 4,
+    right: 4,
     width: 8,
     height: 8,
     borderRadius: 4,

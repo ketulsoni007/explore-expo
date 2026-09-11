@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
+import SearchView from "@/components/search";
 
 export default function SearchScreen() {
-  return (
-    <View>
-      <Text>Search</Text>
-    </View>
-  );
+  return <SearchView />;
 }

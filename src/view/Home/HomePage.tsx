@@ -1,8 +1,8 @@
 import BannerView from '@/components/BannerView';
-import DriverAvailability from '@/components/DriverAvailibility';
 import NearBySection from '@/components/NearBySection';
 import PromoCards from '@/components/PromoCards';
 import SocialMedias from '@/components/SocialMedias';
+import SubscriptionInfo from '@/components/SubscriptionInfo';
 import {
   ScrollView,
   StyleSheet,
@@ -12,9 +12,10 @@ import {
 const HomePage = () => {
 
   return (
-    <ScrollView style={styles.container}>
-      <DriverAvailability />
+    <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
+      {/* <DriverAvailability /> */}
       <BannerView />
+      <SubscriptionInfo />
       <NearBySection />
       <PromoCards />
       <SocialMedias />

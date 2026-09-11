@@ -1,5 +1,6 @@
 import MapSection from '@/components/MapSection';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -71,6 +72,13 @@ const NearBySection = () => {
 
   const currentData = activeTab === 'hotels' ? HOTELS_DATA : RESTAURANTS_DATA;
 
+  const handleTabItemPress = () => {
+    router.push({
+      pathname: "/(drawer)/search-detail",
+      params: { category: activeTab === 'hotels' ? "hotel" : "restaurant" }
+    });
+  }
+
   return (
     <View style={[styles.container, styles.cardContainer]}>
       <View style={styles.headerRow}>
@@ -128,7 +136,7 @@ const NearBySection = () => {
         </View>
         <View style={styles.listContainer}>
           {currentData.map((item) => (
-            <TouchableOpacity key={item.id} style={styles.partnerRow} activeOpacity={0.7}>
+            <TouchableOpacity key={item.id} style={styles.partnerRow} activeOpacity={0.7} onPress={handleTabItemPress}>
               <Image source={item.image} style={styles.partnerImage} />
               <View style={styles.partnerDetails}>
                 <Text style={styles.partnerName}>{item.name}</Text>
@@ -201,8 +209,8 @@ const styles = StyleSheet.create({
     borderRadius: 16,
     paddingVertical: 12,
     paddingHorizontal: 16,
-    borderWidth:1,
-    borderColor:'#EEE'
+    borderWidth: 1,
+    borderColor: '#EEE'
   },
   tabContainer: {
     flexDirection: 'row',

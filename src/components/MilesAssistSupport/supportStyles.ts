@@ -1,0 +1,161 @@
+import { StyleSheet } from "react-native";
+
+export const supportStyles = StyleSheet.create({
+  sectionContainer: {
+    marginTop: 18,
+    marginBottom: 6,
+  },
+  sectionTitle: {
+    fontSize: 16,
+    fontWeight: "800",
+    color: "#0B1B3F",
+    marginBottom: 8,
+  },
+  sectionDescription: {
+    fontSize: 13,
+    color: "#4B5563",
+    lineHeight: 19,
+  },
+  categoriesGrid: {
+    gap: 8,
+    paddingRight: 16,
+  },
+  categoryCard: {
+    width: 105,
+    backgroundColor: "#EFF4FF",
+    borderRadius: 12,
+    paddingVertical: 12,
+    paddingHorizontal: 8,
+    alignItems: "center",
+    justifyContent: "center",
+  },
+  categoryIcon: {
+    marginBottom: 6,
+  },
+  categoryText: {
+    fontSize: 11,
+    fontWeight: "700",
+    color: "#0B1B3F",
+    textAlign: "center",
+  },
+  checkRow: {
+    flexDirection: "row",
+    alignItems: "center",
+    marginBottom: 8,
+  },
+  checkText: {
+    fontSize: 13,
+    color: "#1F2937",
+    fontWeight: "500",
+    marginLeft: 8,
+  },
+  menuContainer: {
+    backgroundColor: "#FFFFFF",
+    borderRadius: 16,
+    paddingHorizontal: 12,
+    marginTop: 16,
+    borderWidth: 1,
+    borderColor: "#F0F3FA",
+  },
+  menuItem: {
+    flexDirection: "row",
+    alignItems: "center",
+    paddingVertical: 14,
+  },
+  menuItemBorder: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#F3F4F6",
+  },
+  menuIconBg: {
+    width: 36,
+    height: 36,
+    borderRadius: 10,
+    backgroundColor: "#EFF4FF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 12,
+  },
+  menuTextContent: {
+    flex: 1,
+  },
+  menuTitle: {
+    fontSize: 14,
+    fontWeight: "700",
+    color: "#0B1B3F",
+  },
+  menuSubtitle: {
+    fontSize: 11,
+    color: "#6B7280",
+    marginTop: 2,
+  },
+  bannerContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    backgroundColor: "#EBF3FF",
+    borderRadius: 14,
+    padding: 14,
+    marginTop: 20,
+  },
+  bannerLeft: {
+    flexDirection: "row",
+    alignItems: "center",
+    flex: 1,
+    marginRight: 8,
+  },
+  bannerIconBg: {
+    width: 38,
+    height: 38,
+    borderRadius: 19,
+    backgroundColor: "#D8E8FF",
+    justifyContent: "center",
+    alignItems: "center",
+    marginRight: 10,
+  },
+  bannerTextContainer: {
+    flex: 1,
+  },
+  bannerTitle: {
+    fontSize: 13,
+    fontWeight: "800",
+    color: "#0B1B3F",
+  },
+  bannerSubtitle: {
+    fontSize: 11,
+    color: "#4B5563",
+    marginTop: 2,
+    lineHeight: 15,
+  },
+  footerContainer: {
+    marginTop: 20,
+    alignItems: "center",
+  },
+  primaryButton: {
+    width: "100%",
+    backgroundColor: "#0052FF",
+    borderRadius: 12,
+    paddingVertical: 14,
+    paddingHorizontal: 16,
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+  },
+  primaryButtonText: {
+    color: "#FFFFFF",
+    fontSize: 15,
+    fontWeight: "700",
+  },
+  secondaryButton: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "center",
+    marginTop: 14,
+    paddingVertical: 6,
+  },
+  secondaryButtonText: {
+    color: "#0052FF",
+    fontSize: 13,
+    fontWeight: "700",
+    marginLeft: 6,
+  },
+});
