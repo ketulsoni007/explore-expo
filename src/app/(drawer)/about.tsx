@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
+import AboutUs from "@/components/AboutUs";
 
 export default function AboutScreen() {
-  return (
-    <View>
-      <Text>About</Text>
-    </View>
-  );
+  return <AboutUs />
 }

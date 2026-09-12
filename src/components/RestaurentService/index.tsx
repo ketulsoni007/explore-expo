@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet } from 'react-native';
 
 import { router } from 'expo-router';
+import HowToUseVideo from '../HowToUseVideo';
 import AboutSection from './AboutSection';
 import ActionButtons from './ActionButtons';
 import { colors } from './colors';
@@ -31,6 +32,7 @@ const RestaurentServiceView = () => {
         <WhoCanAvail />
         <MenuList />
         <HygieneBanner />
+        <HowToUseVideo />
         <ActionButtons
           onFindRestaurants={handleFindRestaurants}
           onCallSupport={handleCallSupport}

@@ -127,7 +127,6 @@ const TierBreakDown = ({
             {/* Bottom Button */}
             <TouchableOpacity
               activeOpacity={0.8}
-              disabled={item.isCurrent}
               onPress={() => onTierSelect?.(item)}
               style={[
                 styles.button,
@@ -148,7 +147,7 @@ const TierBreakDown = ({
                   },
                 ]}
               >
-                {item.buttonText || (item.isCurrent ? 'Current' : 'Upgrade')}
+                Read More
               </Text>
             </TouchableOpacity>
           </View>

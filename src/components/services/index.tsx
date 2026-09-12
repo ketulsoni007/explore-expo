@@ -80,7 +80,7 @@ const SERVICES_DATA: ServiceItem[] = [
   },
   {
     id: 'lawyer',
-    title: 'Lawyer SOS',
+    title: 'Lawyer',
     description: 'Connect with legal experts for guidance and support.',
     iconBg: '#FBE0E4',
     iconColor: '#E0506E',

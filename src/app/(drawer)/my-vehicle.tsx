@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
+import MyVehicleView from "@/components/MyVehicle";
 
 export default function MyVehicleScreen() {
-  return (
-    <View>
-      <Text>My Vehicle</Text>
-    </View>
-  );
+  return <MyVehicleView />;
 }

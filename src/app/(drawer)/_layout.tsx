@@ -35,7 +35,7 @@ const getScreenTitle = (pathname: string, category?: string | string[]) => {
   const routeName = pathname.split("/").filter(Boolean).pop();
   const routeTitles: Record<string, string> = {
     activities: "Activities",
-    about: "About",
+    about: "About us",
     "free-food": "Free Food",
     "free-stay": "Free Stay",
     "help-support": "Help & Support",
@@ -56,7 +56,10 @@ const getScreenTitle = (pathname: string, category?: string | string[]) => {
     "insurance-service" : "Services",
     "road-assist-service" : "Services",
     "lawyer-service" : "Services",
-    "miles-support" : "Services"
+    "miles-support" : "Services",
+    "notifications" : "Notifications",
+    "my-information" : "My Information",
+    "document-verification" : "Verification & Documents"
   };
 
   const normalizedCategory = Array.isArray(category) ? category[0] : category;
@@ -79,7 +82,7 @@ const HeaderRight = () => {
   const [isLanguageMenuVisible, setLanguageMenuVisible] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState("English");
 
-  const languages = ["English", "Hindi", "Marathi"];
+  const languages = ["English", "Hindi", "Gujarati"];
 
   const onLanguagePress = () => {
     setLanguageMenuVisible((visible) => !visible);

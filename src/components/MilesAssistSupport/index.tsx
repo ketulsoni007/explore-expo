@@ -1,7 +1,9 @@
 import {
     ScrollView,
     StyleSheet,
+    View,
 } from 'react-native';
+import HowToUseVideo from '../HowToUseVideo';
 import SupportAbout from './SupportAbout';
 import SupportActionFooter from './SupportActionFooter';
 import SupportEligibility from './SupportEligibility';
@@ -14,29 +16,34 @@ import SupportSatisfactionBanner from './SupportSatisfactionBanner';
 export default function MilesAssistSupportView() {
     return (
         <ScrollView
-            style={styles.screen}
-            contentContainerStyle={styles.scrollContent}
+            style={styles.container}
+            contentContainerStyle={styles.content}
             showsVerticalScrollIndicator={false}
         >
-            <SupportHero />
-            <SupportHighlights />
-            <SupportAbout />
-            <SupportHelpCategories />
-            <SupportEligibility />
-            <SupportListMenu />
-            <SupportSatisfactionBanner />
-            <SupportActionFooter />
+            <View style={{ paddingHorizontal: 16 }}>
+                <SupportHero />
+                <SupportHighlights />
+                <SupportAbout />
+                <SupportHelpCategories />
+                <SupportEligibility />
+                <SupportListMenu />
+                <SupportSatisfactionBanner />
+            </View>
+            <HowToUseVideo />
+            <View style={{ paddingHorizontal: 16 }}>
+                <SupportActionFooter />
+            </View>
+            <View style={{ paddingBottom: 40 }} />
         </ScrollView>
     );
 }
 
 const styles = StyleSheet.create({
-    screen: {
+    container: {
         flex: 1,
-        backgroundColor: '#FFF',
+        backgroundColor: '#FFF'
     },
-    scrollContent: {
-        padding: 16,
-        paddingBottom: 80,
+    content: {
+        paddingBottom: 32,
     },
 });

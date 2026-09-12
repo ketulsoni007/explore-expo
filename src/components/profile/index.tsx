@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { useState } from 'react';
 import { ScrollView, StyleSheet, View } from 'react-native';
 import CurrentPlan from './CurrentPlan';
 import MenuRow from './MenuRow';
@@ -29,6 +30,7 @@ type MenuItemData = {
   title: string;
   subtitle: string;
   badge?: string;
+  route?: string;
 };
 
 const menuItems: MenuItemData[] = [
@@ -37,6 +39,7 @@ const menuItems: MenuItemData[] = [
     bg: '#E8F0FE',
     title: 'My Information',
     subtitle: 'View and update your personal details',
+    route: '/(drawer)/my-information',
   },
   {
     icon: <Ionicons name="car-outline" size={18} color="#16A34A" />,
@@ -44,39 +47,50 @@ const menuItems: MenuItemData[] = [
     title: 'My Vehicle',
     subtitle: 'Manage your vehicle information',
     badge: 'GJ01AB1234',
+    route: '/(drawer)/my-vehicle',
   },
   {
     icon: <Ionicons name="shield-outline" size={18} color="#7C3AED" />,
     bg: '#F1E9FE',
     title: 'Verification & Documents',
     subtitle: 'Manage your verified documents',
+    route: '/(drawer)/document-verification',
   },
   {
     icon: <Ionicons name="wallet-outline" size={18} color="#2563EB" />,
     bg: '#E8F0FE',
     title: 'Payment & Payout Details',
     subtitle: 'Manage bank account and payout details',
+    route: '/(drawer)/wallet',
   },
   {
     icon: <Ionicons name="headset-outline" size={18} color="#2563EB" />,
     bg: '#E8F0FE',
     title: 'Help & Support',
     subtitle: 'FAQs, contact support and more',
+    route: '/(drawer)/help-support',
   },
   {
     icon: <Ionicons name="information-circle-outline" size={18} color="#64748B" />,
     bg: '#EEF1F5',
     title: 'About Miles Assist',
     subtitle: 'App information, terms and privacy',
+    route: '/(drawer)/about',
   },
 ];
 
 const ProfileView = () => {
+  const [medalTier,setMedalTier] = useState<string>('free');
+
+  const handleTierSelect = (tier: any) => {
+    setMedalTier(tier?.id?.toLowerCase() ?? tier?.name?.toLowerCase() ?? 'free');
+  }
+
   return (
     <ScrollView style={styles.container} showsVerticalScrollIndicator={false}>
-      <ProfileHeader />
+      <ProfileHeader medalTier={medalTier} />
       <CurrentPlan />
-      <TierBreakDown />
+      <TierBreakDown onTierSelect={handleTierSelect} />
       <View style={styles.sectionCard}>
           {menuItems.map((item, idx) => (
             <MenuRow key={idx} item={item} isLast={idx === menuItems.length - 1} />

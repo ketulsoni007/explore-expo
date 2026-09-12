@@ -1,9 +1,5 @@
-import { View, Text } from "react-native";
+import HelpAndSupportView from "@/components/Help&Support";
 
 export default function HelpSupportScreen() {
-  return (
-    <View>
-      <Text>Help & Support</Text>
-    </View>
-  );
+  return <HelpAndSupportView />
 }

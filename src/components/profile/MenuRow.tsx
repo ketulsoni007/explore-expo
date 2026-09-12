@@ -1,4 +1,5 @@
 import { Ionicons } from '@expo/vector-icons';
+import { router } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const COLORS = {
@@ -9,9 +10,26 @@ const COLORS = {
   greenBg: '#DCFCE7',
 };
 
-const MenuRow = ({ item, isLast }: any) => {
+type MenuRowProps = {
+  item: {
+    icon: React.ReactNode;
+    bg: string;
+    title: string;
+    subtitle: string;
+    badge?: string;
+    route?: string;
+  };
+  isLast: boolean;
+};
+
+const MenuRow = ({ item, isLast }: MenuRowProps) => {
   return (
-    <TouchableOpacity style={[styles.menuRow, !isLast && styles.menuRowBorder]}>
+    <TouchableOpacity
+      style={[styles.menuRow, !isLast && styles.menuRowBorder]}
+      onPress={() => item.route && router.push(item.route as any)}
+      disabled={!item.route}
+      accessibilityRole={item.route ? 'button' : undefined}
+    >
       <View style={[styles.menuIconWrap, { backgroundColor: item.bg }]}>
         {item.icon}
       </View>

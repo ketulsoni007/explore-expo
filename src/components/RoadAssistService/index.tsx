@@ -1,5 +1,6 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 
+import HowToUseVideo from '../HowToUseVideo';
 import AboutSection from './AboutSection';
 import ActionButtons from './ActionButtons';
 import { colors } from './colors';
@@ -30,10 +31,8 @@ const RoadAssistServiceView = () => {
         <WhoCanAvail />
         <MenuList />
         <ReliableBanner />
-        <ActionButtons
-          onRequestAssistance={handleRequestAssistance}
-          onCallSupport={handleCallSupport}
-        />
+        <HowToUseVideo />
+        <ActionButtons onRequestAssistance={handleRequestAssistance} onCallSupport={handleCallSupport} />
         <View style={{ paddingBottom: 40 }} />
       </ScrollView>
   );

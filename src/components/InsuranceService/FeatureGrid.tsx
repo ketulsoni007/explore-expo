@@ -32,7 +32,7 @@ const FeatureGrid = () => {
 const styles = StyleSheet.create({
   card: {
     flexDirection: 'row',
-    marginHorizontal: 20,
+    marginHorizontal: 16,
     marginTop: 16,
     backgroundColor: colors.white,
     borderRadius: 16,

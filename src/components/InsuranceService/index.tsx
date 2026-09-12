@@ -1,5 +1,7 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 
+import AdditionalSupport from '@/components/AdditionalSupport';
+import HowToUseVideo from '../HowToUseVideo';
 import AboutSection from './AboutSection';
 import ActionButtons from './ActionButtons';
 import { colors } from './colors';
@@ -26,10 +28,12 @@ const InsuranceServiceView = () => {
       >
         <ServiceHero />
         <FeatureGrid />
+        <AdditionalSupport />
         <AboutSection />
         <WhoCanAvail />
         <MenuList />
         <TrustedBanner />
+        <HowToUseVideo />
         <ActionButtons onExplorePlans={handleExplorePlans} onCallSupport={handleCallSupport} />
         <View style={{paddingBottom: 40}} />
       </ScrollView>

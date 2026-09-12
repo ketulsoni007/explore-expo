@@ -1,11 +1,7 @@
-import { Text, View } from 'react-native'
+import WalletView from '@/components/MyWallet'
 
 const wallet = () => {
-  return (
-    <View>
-      <Text>wallet</Text>
-    </View>
-  )
+  return <WalletView />
 }
 
 export default wallet

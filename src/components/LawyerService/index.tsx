@@ -1,7 +1,9 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 
+import HowToUseVideo from '../HowToUseVideo';
 import AboutSection from './AboutSection';
 import ActionButtons from './ActionButtons';
+import CallPolicyBanner from './CallPolicyBanner';
 import { colors } from './colors';
 import FeatureGrid from './FeatureGrid';
 import MenuList from './MenuList';
@@ -26,10 +28,12 @@ const LawyerServiceView = () => {
     >
       <ServiceHero />
       <FeatureGrid />
+      <CallPolicyBanner />
       <AboutSection />
       <WhoCanAvail />
       <MenuList />
       <VerifiedBanner />
+      <HowToUseVideo />
       <ActionButtons onConnectLawyer={handleConnectLawyer} onCallSupport={handleCallSupport} />
       <View style={{ paddingBottom: 40 }} />
     </ScrollView>

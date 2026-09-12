@@ -1,6 +1,7 @@
 import { ScrollView, StyleSheet, View } from 'react-native';
 
 import { router } from 'expo-router';
+import HowToUseVideo from '../HowToUseVideo';
 import AboutSection from './AboutSection';
 import ActionButtons from './ActionButtons';
 import { colors } from './colors';
@@ -31,6 +32,7 @@ const HotelServiceView = () => {
         <WhoCanAvail />
         <MenuList />
         <VerifiedBanner />
+        <HowToUseVideo />
         <ActionButtons onFindHotels={handleFindHotels} onCallSupport={handleCallSupport} />
         <View style={{ paddingBottom: 40 }} />
       </ScrollView>

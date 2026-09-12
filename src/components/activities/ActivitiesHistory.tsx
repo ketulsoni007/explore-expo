@@ -11,12 +11,16 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import HistoryDetailModal, {
+  HistoryItem,
+} from './HistoryDetailModal';
 
 const TABS = ['All', 'Food History', 'Stay History', 'Reward History'];
 
-const HISTORY_DATA = [
+const HISTORY_DATA: HistoryItem[] = [
   {
     id: '1',
+    type: 'meal',
     category: 'Food History',
     title: 'Free Meal',
     subtitle: 'Shree Krishna Dhaba, Ahmedabad',
@@ -33,9 +37,15 @@ const HISTORY_DATA = [
         color="#F07615"
       />
     ),
+    details: {
+      restaurantName: 'Shree Krishna Dhaba',
+      address: 'Ahmedabad, Gujarat',
+      mealType: 'Complimentary driver meal',
+    },
   },
   {
     id: '2',
+    type: 'stay',
     category: 'Stay History',
     title: 'Free Stay',
     subtitle: 'Hotel Highway Inn, Vadodara',
@@ -46,9 +56,17 @@ const HISTORY_DATA = [
     iconBg: '#E9DFFB',
     iconColor: '#7B3FF2',
     icon: <Ionicons name="bed" size={20} color="#7B3FF2" />,
+    details: {
+      hotelName: 'Hotel Highway Inn',
+      address: 'Vadodara, Gujarat',
+      checkIn: '17 May, 8:00 PM',
+      checkOut: '18 May, 8:00 AM',
+      amenities: ['Bed', 'Attached bathroom', 'Breakfast'],
+    },
   },
   {
     id: '3',
+    type: 'reward_earned',
     category: 'Reward History',
     title: 'Reward Earned',
     subtitle: 'Welcome Bonus',
@@ -59,9 +77,15 @@ const HISTORY_DATA = [
     iconBg: '#FCEFD2',
     iconColor: '#E8A415',
     icon: <Ionicons name="star" size={20} color="#E8A415" />,
+    details: {
+      points: '200 points',
+      reason: 'Welcome Bonus',
+      balanceAfter: '1,200 points',
+    },
   },
   {
     id: '4',
+    type: 'reward_redeemed',
     category: 'Reward History',
     title: 'Reward Redeemed',
     subtitle: 'Fuel Voucher',
@@ -72,9 +96,15 @@ const HISTORY_DATA = [
     iconBg: '#E9DFFB',
     iconColor: '#7B3FF2',
     icon: <Ionicons name="gift" size={20} color="#7B3FF2" />,
+    details: {
+      points: '150 points',
+      redeemedFor: 'Fuel Voucher',
+      balanceAfter: '1,050 points',
+    },
   },
   {
     id: '5',
+    type: 'insurance',
     category: 'Other',
     title: 'Insurance Support Requested',
     subtitle: 'Policy Details Shared',
@@ -91,9 +121,15 @@ const HISTORY_DATA = [
         color="#1CA24E"
       />
     ),
+    details: {
+      requestType: 'Insurance support',
+      policyStatus: 'Policy Details Shared',
+      supportStatus: 'Resolved',
+    },
   },
   {
     id: '6',
+    type: 'roadside',
     category: 'Other',
     title: 'Roadside Assistance Used',
     subtitle: 'Tyre Change Service',
@@ -106,9 +142,15 @@ const HISTORY_DATA = [
     icon: (
       <MaterialCommunityIcons name="tow-truck" size={20} color="#2F6FE0" />
     ),
+    details: {
+      serviceType: 'Tyre Change Service',
+      location: 'Ahmedabad, Gujarat',
+      resolvedTime: '14 May, 4:30 PM',
+    },
   },
   {
     id: '7',
+    type: 'legal',
     category: 'Other',
     title: 'Legal Guidance',
     subtitle: 'Consulted Lawyer',
@@ -119,12 +161,23 @@ const HISTORY_DATA = [
     iconBg: '#FBDCE1',
     iconColor: '#E0506E',
     icon: <FontAwesome5 name="balance-scale" size={17} color="#E0506E" />,
+    details: {
+      lawyerName: 'Miles Legal Partner',
+      topic: 'Driver legal guidance',
+      duration: '30 minutes',
+    },
   },
 ];
 
-const HistoryRow = ({ item }: { item: (typeof HISTORY_DATA)[number] }) => {
+const HistoryRow = ({
+  item,
+  onPress,
+}: {
+  item: HistoryItem;
+  onPress: () => void;
+}) => {
   return (
-    <TouchableOpacity style={styles.row} activeOpacity={0.7}>
+    <TouchableOpacity style={styles.row} activeOpacity={0.7} onPress={onPress}>
       <View style={[styles.iconCircle, { backgroundColor: item.iconBg }]}>
         {item.icon}
       </View>
@@ -157,6 +210,8 @@ const HistoryRow = ({ item }: { item: (typeof HISTORY_DATA)[number] }) => {
 
 const ActivitiesHistory = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const [selectedItem, setSelectedItem] = useState<HistoryItem | null>(null);
+  const [modalVisible, setModalVisible] = useState(false);
   const filteredHistory =
     activeTab === 'All'
       ? HISTORY_DATA
@@ -165,6 +220,16 @@ const ActivitiesHistory = () => {
     ...filteredHistory,
     ...Array.from({ length: HISTORY_DATA.length - filteredHistory.length }, () => null),
   ];
+
+  const openDetails = (item: HistoryItem) => {
+    setSelectedItem(item);
+    setModalVisible(true);
+  };
+
+  const closeDetails = () => {
+    setModalVisible(false);
+    setSelectedItem(null);
+  };
 
   return (
     <View>
@@ -202,7 +267,11 @@ const ActivitiesHistory = () => {
           data={displayHistory}
           keyExtractor={(item, index) => item?.id ?? `empty-${index}`}
           renderItem={({ item }) =>
-            item ? <HistoryRow item={item} /> : <View style={styles.emptyRow} />
+            item ? (
+              <HistoryRow item={item} onPress={() => openDetails(item)} />
+            ) : (
+              <View style={styles.emptyRow} />
+            )
           }
           ItemSeparatorComponent={(item) => item ? <View style={styles.separator} /> : <View style={styles.separator} />}
           scrollEnabled={false}
@@ -213,6 +282,11 @@ const ActivitiesHistory = () => {
           <Ionicons name="chevron-forward" size={16} color="#2F5CFF" />
         </TouchableOpacity>
       </View>
+      <HistoryDetailModal
+        visible={modalVisible}
+        historyItem={selectedItem}
+        onClose={closeDetails}
+      />
     </View>
   );
 };

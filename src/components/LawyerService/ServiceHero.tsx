@@ -1,6 +1,5 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const ServiceHero = () => {
@@ -9,7 +8,7 @@ const ServiceHero = () => {
       <View style={styles.iconCircle}>
         <MaterialCommunityIcons name="scale-balance" size={40} color={colors.primary} />
       </View>
-      <Text style={styles.title}>Lawyer SOS</Text>
+      <Text style={styles.title}>Lawyer</Text>
       <Text style={styles.subtitle}>
         Connect with legal experts for guidance{'\n'}and support during legal emergencies.
       </Text>
