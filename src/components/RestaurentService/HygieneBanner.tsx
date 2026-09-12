@@ -1,15 +1,17 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const HygieneBanner = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <View style={styles.iconBox}>
         <Ionicons name="shield-checkmark-outline" size={22} color={colors.primary} />
       </View>
       <View style={styles.textBox}>
-        <Text style={styles.title}>100% Hygienic & Safe</Text>
+        <Text style={styles.title}>{t('100% Hygienic & Safe')}</Text>
         <Text style={styles.subtitle}>
           All partner restaurants follow strict hygiene and quality standards.
         </Text>

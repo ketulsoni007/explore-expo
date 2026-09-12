@@ -1,4 +1,5 @@
 import MapSection from '@/components/MapSection';
+import { useLanguage } from '@/context/LanguageContext';
 import { FontAwesome5, Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { useState } from 'react';
@@ -68,6 +69,7 @@ const RESTAURANTS_DATA: Partner[] = [
 ];
 
 const NearBySection = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState<'hotels' | 'restaurants'>('hotels');
 
   const currentData = activeTab === 'hotels' ? HOTELS_DATA : RESTAURANTS_DATA;
@@ -83,14 +85,14 @@ const NearBySection = () => {
     <View style={[styles.container, styles.cardContainer]}>
       <View style={styles.headerRow}>
         <View style={styles.titleContainer}>
-          <Text style={styles.sectionTitle}>Nearby Partners</Text>
+          <Text style={styles.sectionTitle}>{t('Nearby Partners')}</Text>
           <View style={styles.locationContainer}>
             <Ionicons name="location-sharp" size={10} color="#64748B" />
-            <Text style={styles.locationText}>Ahmedabad, Gujarat</Text>
+            <Text style={styles.locationText}>{t('Ahmedabad, Gujarat')}</Text>
           </View>
         </View>
         <TouchableOpacity activeOpacity={0.7} style={styles.viewAllButton}>
-          <Text style={styles.viewAllText}>View All</Text>
+          <Text style={styles.viewAllText}>{t('View All')}</Text>
           <Ionicons name="chevron-forward" size={16} color="#2563EB" />
         </TouchableOpacity>
       </View>
@@ -110,7 +112,7 @@ const NearBySection = () => {
               color={activeTab === 'hotels' ? '#EA580C' : '#94A3B8'}
             />
             <Text style={[styles.tabText, activeTab === 'hotels' && styles.activeTabText]}>
-              Hotels
+              {t('Hotels')}
             </Text>
           </TouchableOpacity>
 
@@ -130,7 +132,7 @@ const NearBySection = () => {
                 activeTab === 'restaurants' && styles.activeTabTextRestaurant,
               ]}
             >
-              Restaurants
+              {t('Restaurants')}
             </Text>
           </TouchableOpacity>
         </View>
@@ -139,14 +141,14 @@ const NearBySection = () => {
             <TouchableOpacity key={item.id} style={styles.partnerRow} activeOpacity={0.7} onPress={handleTabItemPress}>
               <Image source={item.image} style={styles.partnerImage} />
               <View style={styles.partnerDetails}>
-                <Text style={styles.partnerName}>{item.name}</Text>
+                <Text style={styles.partnerName}>{t(item.name)}</Text>
                 <View style={styles.subDetailsRow}>
                   <Text style={styles.distanceText}>{item.distance}</Text>
                   <Text style={styles.dotSeparator}>•</Text>
                   <Text style={styles.ratingText}>{item.rating}</Text>
                   <Ionicons name="star" size={12} color="#F59E0B" />
                   <View style={styles.badgeTag}>
-                    <Text style={styles.badgeText}>{item.badge}</Text>
+                    <Text style={styles.badgeText}>{t(item.badge)}</Text>
                   </View>
                 </View>
               </View>

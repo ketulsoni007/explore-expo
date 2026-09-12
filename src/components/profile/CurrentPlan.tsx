@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Feather, MaterialCommunityIcons } from '@expo/vector-icons';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -17,6 +18,7 @@ interface CurrentPlanProps {
 }
 
 const CurrentPlan: React.FC<CurrentPlanProps> = ({ onViewPlanPress }) => {
+  const { t } = useLanguage();
   return (
     <View style={styles.card}>
       {/* Left Shield Icon */}
@@ -28,9 +30,9 @@ const CurrentPlan: React.FC<CurrentPlanProps> = ({ onViewPlanPress }) => {
       <View style={styles.contentContainer}>
         {/* Top Row: Title + Pill */}
         <View style={styles.topRow}>
-          <Text style={styles.planTitle}>Current Plan</Text>
+          <Text style={styles.planTitle}>{t('Current Plan')}</Text>
           <View style={styles.planPill}>
-            <Text style={styles.planPillText}>Free Plan</Text>
+            <Text style={styles.planPillText}>{t('Free Plan')}</Text>
           </View>
         </View>
 
@@ -38,12 +40,12 @@ const CurrentPlan: React.FC<CurrentPlanProps> = ({ onViewPlanPress }) => {
         <View style={styles.bottomRow}>
           <Text style={styles.price}>
             <Text style={styles.priceSymbol}>₹ </Text>
-            199 <Text style={styles.priceUnit}>/ Month</Text>
+            199 <Text style={styles.priceUnit}>/ {t('Month')}</Text>
           </Text>
 
           <View style={styles.billingRow}>
             <View style={styles.billingDot} />
-            <Text style={styles.billingText}>Next billing on 25 Sep 2026</Text>
+            <Text style={styles.billingText}>{t('Next billing on 25 Sep 2026')}</Text>
           </View>
         </View>
       </View>
@@ -54,7 +56,7 @@ const CurrentPlan: React.FC<CurrentPlanProps> = ({ onViewPlanPress }) => {
         onPress={onViewPlanPress}
         activeOpacity={0.7}
       >
-        <Text style={styles.actionButtonText}>View Plan</Text>
+        <Text style={styles.actionButtonText}>{t('View Plan')}</Text>
         <Feather name="chevron-right" size={16} color={COLORS.primary} />
       </TouchableOpacity>
     </View>

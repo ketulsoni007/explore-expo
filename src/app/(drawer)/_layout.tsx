@@ -1,4 +1,5 @@
 import DrawerContent from "@/components/drawer/DrawerContent";
+import { TranslationKey, useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { router, useGlobalSearchParams, usePathname } from "expo-router";
 import { Drawer } from "expo-router/drawer";
@@ -23,73 +24,77 @@ const Logo = () => (
   </Pressable>
 );
 
-const getScreenTitle = (pathname: string, category?: string | string[]) => {
+const getScreenTitle = (
+  pathname: string,
+  category: string | string[] | undefined,
+  t: (key: TranslationKey) => string,
+) => {
   const titles: Record<string, string> = {
-    "/(drawer)/(tabs)": "Home",
-    "/(drawer)/(tabs)/activities": "Activities",
-    "/(drawer)/(tabs)/profile": "Profile",
-    "/(drawer)/(tabs)/search": "Search",
-    "/(drawer)/(tabs)/services": "Services",
+    "/(drawer)/(tabs)": t("home"),
+    "/(drawer)/(tabs)/activities": t("activities"),
+    "/(drawer)/(tabs)/profile": t("profile"),
+    "/(drawer)/(tabs)/search": t("search"),
+    "/(drawer)/(tabs)/services": t("services"),
   };
 
   const routeName = pathname.split("/").filter(Boolean).pop();
   const routeTitles: Record<string, string> = {
-    activities: "Activities",
-    about: "About us",
-    "free-food": "Free Food",
-    "free-stay": "Free Stay",
-    "help-support": "Help & Support",
-    home: "Home",
-    "my-bookings": "My Bookings",
-    "my-vehicle": "My Vehicle",
-    profile: "Profile",
-    "reward-points": "Reward Points",
-    search: "Find Food & Stay",
-    services: "Services",
-    settings: "Settings",
-    sos: "SOS / Emergency",
-    wallet: "Wallet",
-    "search-result": "Search Results",
-    "search-detail" : "Search Detail",
-    "hotel-service" : "Services",
-    "restaurant-service" : "Services",
-    "insurance-service" : "Services",
-    "road-assist-service" : "Services",
-    "lawyer-service" : "Services",
-    "miles-support" : "Services",
-    "notifications" : "Notifications",
-    "my-information" : "My Information",
-    "document-verification" : "Verification & Documents"
+    activities: t("activities"),
+    about: t("about"),
+    "free-food": t("freeFood"),
+    "free-stay": t("freeStay"),
+    "help-support": t("helpSupport"),
+    home: t("home"),
+    "my-bookings": t("myBookings"),
+    "my-vehicle": t("myVehicle"),
+    profile: t("profile"),
+    "reward-points": t("rewardPoints"),
+    search: t("findFoodStay"),
+    services: t("services"),
+    settings: t("settings"),
+    sos: t("emergency"),
+    wallet: t("wallet"),
+    "search-result": t("searchResults"),
+    "search-detail": t("searchDetail"),
+    "hotel-service": t("hotelServices"),
+    "restaurant-service": t("restaurantServices"),
+    "insurance-service": t("insuranceServices"),
+    "road-assist-service": t("roadAssistServices"),
+    "lawyer-service": t("lawyerServices"),
+    "miles-support": t("milesSupport"),
+    notifications: t("notifications"),
+    "my-information": t("myInformation"),
+    "document-verification": t("verificationDocuments"),
   };
 
   const normalizedCategory = Array.isArray(category) ? category[0] : category;
 
   if (routeName === "search-result") {
     return normalizedCategory === "hotel"
-      ? "Hotels on your route"
-      : "Restaurants on your route";
+      ? t("hotelsOnRoute")
+      : t("restaurantsOnRoute");
   }
 
   if (routeName === "search-detail") {
-    return normalizedCategory === "hotel" ? "Hotel detail" : "Restaurant detail";
+    return normalizedCategory === "hotel" ? t("hotelDetail") : t("restaurantDetail");
   }
 
-  return titles[pathname] ?? routeTitles[routeName ?? ""] ?? "Home";
+  return titles[pathname] ?? routeTitles[routeName ?? ""] ?? t("home");
 };
 
 const HeaderRight = () => {
+  const { language: currentLanguage, setLanguage, t } = useLanguage();
   const hasUnreadNotifications = true;
   const [isLanguageMenuVisible, setLanguageMenuVisible] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState("English");
 
-  const languages = ["English", "Hindi", "Gujarati"];
+  const languages = ["English", "Hindi", "Gujarati"] as const;
 
   const onLanguagePress = () => {
     setLanguageMenuVisible((visible) => !visible);
   };
 
-  const onLanguageSelect = (language: string) => {
-    setSelectedLanguage(language);
+  const onLanguageSelect = (nextLanguage: (typeof languages)[number]) => {
+    setLanguage(nextLanguage);
     setLanguageMenuVisible(false);
   };
 
@@ -104,7 +109,7 @@ const HeaderRight = () => {
           onPress={onLanguagePress}
           hitSlop={8}
           style={styles.iconContainer}
-          accessibilityLabel="Select language"
+          accessibilityLabel={t("selectLanguage")}
           accessibilityRole="button"
         >
           <Ionicons name="language-outline" size={24} color="#000" />
@@ -143,7 +148,7 @@ const HeaderRight = () => {
                 ]}
               >
                 <Text style={styles.languageText}>{language}</Text>
-                {selectedLanguage === language && (
+                {currentLanguage === language && (
                   <Ionicons name="checkmark" size={18} color="#3366FF" />
                 )}
               </Pressable>
@@ -158,6 +163,7 @@ const HeaderRight = () => {
 export default function DrawerLayout() {
   const pathname = usePathname();
   const { category } = useGlobalSearchParams<{ category?: string | string[] }>();
+  const { t } = useLanguage();
 
   return (
     <Drawer
@@ -166,7 +172,7 @@ export default function DrawerLayout() {
         headerTitle:
           pathname === "/"
             ? () => <Logo />
-            : getScreenTitle(pathname, category),
+            : getScreenTitle(pathname, category, t),
         headerRight: () => <HeaderRight />,
         drawerStyle: {
           width: "82%",
@@ -176,88 +182,88 @@ export default function DrawerLayout() {
       <Drawer.Screen
         name="(tabs)"
         options={{
-          drawerLabel: "Home",
-          title: "Home",
+          drawerLabel: t("home"),
+          title: t("home"),
         }}
       />
 
       <Drawer.Screen
         name="free-food"
         options={{
-          drawerLabel: "Free Food",
-          title: "Free Food",
+          drawerLabel: t("freeFood"),
+          title: t("freeFood"),
         }}
       />
 
       <Drawer.Screen
         name="free-stay"
         options={{
-          drawerLabel: "Free Stay",
-          title: "Free Stay",
+          drawerLabel: t("freeStay"),
+          title: t("freeStay"),
         }}
       />
 
       <Drawer.Screen
         name="sos"
         options={{
-          drawerLabel: "SOS / Emergency",
-          title: "SOS / Emergency",
+          drawerLabel: t("emergency"),
+          title: t("emergency"),
         }}
       />
 
       <Drawer.Screen
         name="my-bookings"
         options={{
-          drawerLabel: "My Bookings",
-          title: "My Bookings",
+          drawerLabel: t("myBookings"),
+          title: t("myBookings"),
         }}
       />
 
       <Drawer.Screen
         name="my-vehicle"
         options={{
-          drawerLabel: "My Vehicle",
-          title: "My Vehicle",
+          drawerLabel: t("myVehicle"),
+          title: t("myVehicle"),
         }}
       />
 
       <Drawer.Screen
         name="wallet"
         options={{
-          drawerLabel: "Wallet",
-          title: "Wallet",
+          drawerLabel: t("wallet"),
+          title: t("wallet"),
         }}
       />
 
       <Drawer.Screen
         name="reward-points"
         options={{
-          drawerLabel: "Reward Points",
-          title: "Reward Points",
+          drawerLabel: t("rewardPoints"),
+          title: t("rewardPoints"),
         }}
       />
 
       <Drawer.Screen
         name="help-support"
         options={{
-          drawerLabel: "Help & Support",
-          title: "Help & Support",
+          drawerLabel: t("helpSupport"),
+          title: t("helpSupport"),
         }}
       />
 
       <Drawer.Screen
         name="about"
         options={{
-          drawerLabel: "About",
-          title: "About",
+          drawerLabel: t("about"),
+          title: t("about"),
         }}
       />
 
       <Drawer.Screen
         name="settings"
         options={{
-          drawerLabel: "Settings",
-          title: "Settings",
+          drawerLabel: t("settings"),
+          title: t("settings"),
         }}
       />
     </Drawer>

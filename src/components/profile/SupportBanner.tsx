@@ -1,15 +1,17 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-  useWindowDimensions,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
+    useWindowDimensions,
 } from 'react-native';
 
 const NARROW_BREAKPOINT = 400;
 
 const SupportBanner = () => {
+  const { t } = useLanguage();
   const { width } = useWindowDimensions();
   const isNarrow = width < NARROW_BREAKPOINT;
 
@@ -23,9 +25,9 @@ const SupportBanner = () => {
         </View>
 
         <View style={styles.textContent}>
-          <Text style={styles.title}>We're here to help!</Text>
+          <Text style={styles.title}>{t("We're here to help!")}</Text>
           <Text style={styles.subtitle}>
-            Our support team is available 24/7
+            {t('Our support team is available 24/7')}
           </Text>
         </View>
       </View>
@@ -35,7 +37,7 @@ const SupportBanner = () => {
         activeOpacity={0.85}
       >
         <Ionicons name="headset" size={16} color="#fff" />
-        <Text style={styles.buttonText}>Contact Support</Text>
+        <Text style={styles.buttonText}>{t('Contact Support')}</Text>
       </TouchableOpacity>
     </View>
   );

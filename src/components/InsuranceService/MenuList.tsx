@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -55,6 +56,7 @@ type Props = {
 };
 
 const MenuList = ({ items = MENU_ITEMS }: Props) => {
+  const { t } = useLanguage();
   const [expandedIndex, setExpandedIndex] = useState<number | null>(null);
 
   return (
@@ -75,8 +77,8 @@ const MenuList = ({ items = MENU_ITEMS }: Props) => {
               <Ionicons name={item.icon} size={20} color={colors.primary} />
             </View>
             <View style={styles.textBox}>
-              <Text style={styles.title}>{item.title}</Text>
-              <Text style={styles.subtitle}>{item.subtitle}</Text>
+              <Text style={styles.title}>{t(item.title)}</Text>
+              <Text style={styles.subtitle}>{t(item.subtitle)}</Text>
             </View>
             <Ionicons
               name={expandedIndex === index ? 'chevron-up' : 'chevron-down'}
@@ -86,7 +88,7 @@ const MenuList = ({ items = MENU_ITEMS }: Props) => {
           </TouchableOpacity>
           {expandedIndex === index && (
             <View style={styles.contentBox}>
-              <Text style={styles.contentText}>{item.content}</Text>
+              <Text style={styles.contentText}>{t(item.content)}</Text>
             </View>
           )}
         </View>

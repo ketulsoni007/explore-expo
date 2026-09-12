@@ -1,6 +1,8 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { StyleSheet, Text, View } from 'react-native';
 
 const SubscriptionInfo = () => {
+  const { t } = useLanguage();
   // Static data matching user details & 30-day trial logic
   const user = {
     name: 'Jay Dave',
@@ -19,7 +21,7 @@ const SubscriptionInfo = () => {
       {/* Header Section */}
       <View style={styles.header}>
         <View>
-          <Text style={styles.subTitle}>{user.status.toUpperCase()}</Text>
+          <Text style={styles.subTitle}>{t(user.status).toUpperCase()}</Text>
           <Text style={styles.userName}>{user.name}</Text>
           <Text style={styles.memberId}>ID: {user.memberId}</Text>
         </View>
@@ -27,7 +29,7 @@ const SubscriptionInfo = () => {
         {/* Tier / Live Badge */}
         <View style={styles.badge}>
           <View style={styles.greenDot} />
-          <Text style={styles.badgeText}>{user.tier}</Text>
+          <Text style={styles.badgeText}>{t(user.tier)}</Text>
         </View>
       </View>
 
@@ -42,10 +44,10 @@ const SubscriptionInfo = () => {
       {/* Footer Details */}
       <View style={styles.footer}>
         <Text style={styles.footerText}>
-          {user.daysRemaining} days remaining
+          {user.daysRemaining} {t('days remaining')}
         </Text>
         <Text style={styles.footerText}>
-          30-Day Free Access
+          {t('30-Day Free Access')}
         </Text>
       </View>
     </View>

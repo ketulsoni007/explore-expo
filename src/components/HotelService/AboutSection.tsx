@@ -1,10 +1,12 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const AboutSection = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>About This Service</Text>
+      <Text style={styles.heading}>{t('About This Service')}</Text>
       <Text style={styles.body}>
         Miles Assist partners with verified hotels across India to provide eligible drivers with
         comfortable stays at no cost. Whether it's a long trip, delay, or emergency, we've got you

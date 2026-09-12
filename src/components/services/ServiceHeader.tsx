@@ -1,7 +1,9 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 const ServiceHeader = () => {
+    const { t } = useLanguage();
     return (
         <View style={styles.card}>
             <Image
@@ -18,15 +20,15 @@ const ServiceHeader = () => {
                         style={styles.shieldIcon}
                     />
                     <View>
-                        <Text style={styles.title}>We're here for you</Text>
+                        <Text style={styles.title}>{t("We're here for you")}</Text>
                         <Text style={styles.subtitle}>
-                            All support services for your safe and smooth journey.
+                            {t('All support services for your safe and smooth journey.')}
                         </Text>
                     </View>
                 </View>
                 <View style={styles.trustedRow}>
                     <Ionicons name="checkmark-circle" size={18} color="#1CA24E" />
-                    <Text style={styles.trustedText}>100% Trusted</Text>
+                    <Text style={styles.trustedText}>{t('100% Trusted')}</Text>
                 </View>
             </View>
         </View>

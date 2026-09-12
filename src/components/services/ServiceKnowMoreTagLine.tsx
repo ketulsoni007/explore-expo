@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Octicons } from '@expo/vector-icons'; // Changed icon set to get a better match
 import {
     StyleSheet,
@@ -10,6 +11,7 @@ import {
 const NARROW_BREAKPOINT = 400;
 
 const ServiceKnowMoreTagLine = () => {
+    const { t } = useLanguage();
     const { width } = useWindowDimensions();
     const isNarrow = width < NARROW_BREAKPOINT;
 
@@ -22,9 +24,9 @@ const ServiceKnowMoreTagLine = () => {
                 <Octicons name="verified" size={26} color="#10B981" />
 
                 <View style={styles.textContent}>
-                    <Text style={styles.title}>100% Free for eligible Miles Assist drivers</Text>
+                    <Text style={styles.title}>{t('100% Free for eligible Miles Assist drivers')}</Text>
                     <Text style={styles.subtitle}>
-                        Only verified partners on your route
+                        {t('Only verified partners on your route')}
                     </Text>
                 </View>
             </View>
@@ -33,7 +35,7 @@ const ServiceKnowMoreTagLine = () => {
                 style={[styles.button, isNarrow && styles.buttonFullWidth]}
                 activeOpacity={0.8}
             >
-                <Text style={styles.buttonText}>Know More</Text>
+                <Text style={styles.buttonText}>{t('Know More')}</Text>
             </TouchableOpacity>
         </View>
     );

@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -85,6 +86,7 @@ const faqItems = [
 ];
 
 const HelpAndSupportView = () => {
+  const { t } = useLanguage();
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [faqOpen, setFaqOpen] = useState(false);
   const [openQuestionId, setOpenQuestionId] = useState<string | null>(null);
@@ -108,9 +110,9 @@ const HelpAndSupportView = () => {
         <View style={styles.heroIconWrap}>
           <MaterialCommunityIcons name="headset" size={32} color={colors.primary} />
         </View>
-        <Text style={styles.heroTitle}>Help & Support</Text>
+        <Text style={styles.heroTitle}>{t('Help & Support')}</Text>
         <Text style={styles.heroSubtitle}>
-          We're here for you, anytime, anywhere. Get help whenever you need it.
+          {t("We're here for you, anytime, anywhere. Get help whenever you need it.")}
         </Text>
 
         {/* Category grid */}
@@ -120,7 +122,7 @@ const HelpAndSupportView = () => {
               <View style={styles.categoryIconWrap}>
                 <Ionicons name={cat.icon as any} size={20} color={colors.primary} />
               </View>
-              <Text style={styles.categoryText}>{cat.title}</Text>
+              <Text style={styles.categoryText}>{t(cat.title)}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -140,8 +142,8 @@ const HelpAndSupportView = () => {
               >
                 <View style={styles.menuIconBg}>{item.icon}</View>
                 <View style={styles.menuTextContent}>
-                  <Text style={styles.menuTitle}>{item.title}</Text>
-                  <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
+                  <Text style={styles.menuTitle}>{t(item.title)}</Text>
+                  <Text style={styles.menuSubtitle}>{t(item.subtitle)}</Text>
                 </View>
                 <Ionicons
                   name={openMenuId === item.id ? 'chevron-up' : 'chevron-down'}
@@ -151,7 +153,7 @@ const HelpAndSupportView = () => {
               </TouchableOpacity>
               {openMenuId === item.id && (
                 <View style={styles.menuAnswerWrap}>
-                  <Text style={styles.menuAnswerText}>{item.content}</Text>
+                  <Text style={styles.menuAnswerText}>{t(item.content)}</Text>
                 </View>
               )}
             </View>

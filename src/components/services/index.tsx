@@ -1,16 +1,17 @@
+import { useLanguage } from '@/context/LanguageContext';
 import {
-  FontAwesome5,
-  Ionicons,
-  MaterialCommunityIcons,
+    FontAwesome5,
+    Ionicons,
+    MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 import ServiceHeader from './ServiceHeader';
 import ServiceKnowMoreTagLine from './ServiceKnowMoreTagLine';
@@ -141,6 +142,7 @@ const FreeTag = () => (
 );
 
 const ServiceCard = ({ item }: { item: ServiceItem }) => {
+  const { t } = useLanguage();
   const handlePress = () => {
     if (item.route) {
       router.push(item.route as any);
@@ -160,7 +162,7 @@ const ServiceCard = ({ item }: { item: ServiceItem }) => {
       </View>
 
       <View style={styles.cardTitleRow}>
-        <Text style={styles.cardTitle}>{item.title}</Text>
+        <Text style={styles.cardTitle}>{t(item.title)}</Text>
         <Ionicons
           name="chevron-forward"
           size={16}
@@ -169,28 +171,29 @@ const ServiceCard = ({ item }: { item: ServiceItem }) => {
       </View>
 
       <Text style={styles.cardDescription} numberOfLines={3}>
-        {item.description}
+        {t(item.description)}
       </Text>
     </TouchableOpacity>
   );
 };
 
 const ComingSoonCard = ({ item }: any) => {
+  const { t } = useLanguage();
   return (
     <View style={styles.comingSoonCard}>
       <View style={styles.comingSoonHeader}>
         <Ionicons name="sparkles" size={15} color="#2F5CFF" />
-        <Text style={styles.comingSoonTitle}>{item.title}</Text>
+        <Text style={styles.comingSoonTitle}>{t(item.title)}</Text>
       </View>
-      <Text style={styles.comingSoonSubtitle}>{item.subtitle}</Text>
+      <Text style={styles.comingSoonSubtitle}>{t(item.subtitle)}</Text>
 
       <View style={styles.upcomingList}>
         {item.items.map((upcoming: any) => (
           <View key={upcoming.id} style={styles.upcomingRow}>
             <View style={styles.upcomingIconCircle}>{upcoming.icon}</View>
-            <Text style={styles.upcomingLabel}>{upcoming.label}</Text>
+            <Text style={styles.upcomingLabel}>{t(upcoming.label)}</Text>
             <View style={styles.upcomingPill}>
-              <Text style={styles.upcomingPillText}>Upcoming</Text>
+              <Text style={styles.upcomingPillText}>{t('Upcoming')}</Text>
             </View>
           </View>
         ))}
@@ -208,6 +211,7 @@ const chunkIntoPairs = (data: ServiceItem[]) => {
 };
 
 const ServicesScreen = () => {
+  const { t } = useLanguage();
   const rows = chunkIntoPairs(SERVICES_DATA);
 
   return (
@@ -218,7 +222,7 @@ const ServicesScreen = () => {
     >
       <ServiceHeader />
 
-      <Text style={styles.sectionTitle}>All Services</Text>
+      <Text style={styles.sectionTitle}>{t('All Services')}</Text>
 
       {rows.map((row, rowIndex) => (
         <View key={`row-${rowIndex}`} style={styles.row}>

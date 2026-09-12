@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import {
     FlatList,
@@ -95,6 +96,7 @@ const CARD_DATA = [
 ];
 
 const Card = ({ item }: any) => {
+  const { t } = useLanguage();
   return (
     <View style={[styles.card, { backgroundColor: item.cardBg }]}>
       <View style={[styles.iconCircle, { backgroundColor: item.iconBg }]}>
@@ -102,17 +104,17 @@ const Card = ({ item }: any) => {
       </View>
 
       <Text style={[styles.statLabel, { color: item.labelColor }]}>
-        {item.label}
+        {t(item.label)}
       </Text>
 
       <Text style={styles.value}>{item.value}</Text>
-      <Text style={styles.subLabel}>{item.subLabel}</Text>
+      <Text style={styles.subLabel}>{t(item.subLabel)}</Text>
 
       <TouchableOpacity
         style={[styles.button, { backgroundColor: item.buttonColor }]}
         activeOpacity={0.85}
       >
-        <Text style={styles.buttonText}>{item.buttonText}</Text>
+        <Text style={styles.buttonText}>{t(item.buttonText)}</Text>
       </TouchableOpacity>
     </View>
   );

@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { Tabs } from "expo-router";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -7,6 +8,7 @@ const INACTIVE_COLOR = "#9CA3AF";
 
 export default function TabsLayout() {
   const insets = useSafeAreaInsets();
+  const { t } = useLanguage();
 
   return (
     <Tabs
@@ -43,7 +45,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Home",
+          title: t("home"),
           tabBarIcon: ({ color, focused, size }) => (
             <Ionicons
               name={focused ? "home" : "home-outline"}
@@ -56,7 +58,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="activities"
         options={{
-          title: "Activities",
+          title: t("activities"),
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? "analytics" : "analytics-outline"} size={22} color={color} />
           ),
@@ -65,7 +67,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="search"
         options={{
-          title: "Search",
+          title: t("search"),
           tabBarIcon: ({ color, focused }) => (
             focused ?
             <AntDesign name="search" size={24} color={color} /> : 
@@ -76,7 +78,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="services"
         options={{
-          title: "Services",
+          title: t("services"),
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? "grid" : "grid-outline"} size={22} color={color} />
           ),
@@ -85,7 +87,7 @@ export default function TabsLayout() {
       <Tabs.Screen
         name="profile"
         options={{
-          title: "Profile",
+          title: t("profile"),
           tabBarIcon: ({ color, focused }) => (
             <Ionicons name={focused ? "person" : "person-outline"} size={22} color={color} />
           ),

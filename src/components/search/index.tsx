@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { AntDesign, Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -20,6 +21,7 @@ const COLORS = {
 };
 
 const SearchView = () => {
+    const { t } = useLanguage();
     const onUsePickupLocation = () => { };
     const onUseDropLocation = () => { };
     const onFindRestaurants = () => {
@@ -39,17 +41,17 @@ const SearchView = () => {
             showsVerticalScrollIndicator={false}
             contentContainerStyle={styles.scrollContent}
         >
-            <Text style={styles.heading}>Where are you{"\n"}going today?</Text>
+            <Text style={styles.heading}>{t('Where are you\ngoing today?')}</Text>
             <Text style={styles.subheading}>
-                Find free food and free stay{"\n"}options on your route.
+                {t('Find free food and free stay\noptions on your route.')}
             </Text>
             <View style={styles.routeCard}>
                 <View style={styles.routeCardTop}>
                     <View style={styles.routeRow}>
                         <Ionicons name="location" size={20} color={COLORS.green} style={styles.pinIcon} />
                         <View style={styles.routeTextContainer}>
-                            <Text style={styles.routeLabel}>Pickup Point</Text>
-                            <Text style={styles.routePlaceholder}>Enter pickup location</Text>
+                            <Text style={styles.routeLabel}>{t('Pickup Point')}</Text>
+                            <Text style={styles.routePlaceholder}>{t('Enter pickup location')}</Text>
                         </View>
                         <TouchableOpacity
                             style={styles.locateButton}
@@ -65,8 +67,8 @@ const SearchView = () => {
                     <View style={styles.routeRow}>
                         <Ionicons name="location" size={20} color={COLORS.red} style={styles.pinIcon} />
                         <View style={styles.routeTextContainer}>
-                            <Text style={styles.routeLabel}>Drop Point</Text>
-                            <Text style={styles.routePlaceholder}>Enter drop location</Text>
+                            <Text style={styles.routeLabel}>{t('Drop Point')}</Text>
+                            <Text style={styles.routePlaceholder}>{t('Enter drop location')}</Text>
                         </View>
                         <TouchableOpacity
                             style={styles.locateButton}
@@ -89,7 +91,7 @@ const SearchView = () => {
             <View style={styles.verifiedRow}>
                 <Ionicons name="shield-checkmark-outline" size={16} color={COLORS.gray} />
                 <Text style={styles.verifiedText}>
-                    Only verified partners  •  100% Free for eligible drivers
+                    {t('Only verified partners  •  100% Free for eligible drivers')}
                 </Text>
             </View>
 
@@ -109,16 +111,16 @@ const SearchView = () => {
                     </View>
 
                     <Text style={[styles.optionTitle, { color: COLORS.orange }]}>
-                        Find Restaurants
+                        {t('Find Restaurants')}
                     </Text>
-                    <Text style={styles.optionSubtitle}>Discover free food{"\n"}on your route</Text>
+                    <Text style={styles.optionSubtitle}>{t('Discover free food\non your route')}</Text>
 
                     <TouchableOpacity
                         style={[styles.ctaButton, { backgroundColor: "#EA580C" }]}
                         activeOpacity={0.85}
                         onPress={onFindRestaurants}
                     >
-                        <Text style={styles.ctaText}>Find Food</Text>
+                        <Text style={styles.ctaText}>{t('Find Food')}</Text>
                         <Ionicons name="arrow-forward" size={16} color="#FFFFFF" />
                     </TouchableOpacity>
                 </View>
@@ -136,15 +138,15 @@ const SearchView = () => {
                         </View>
                     </View>
 
-                    <Text style={[styles.optionTitle, { color: COLORS.purple }]}>Find Hotels</Text>
-                    <Text style={styles.optionSubtitle}>Discover free stays{"\n"}on your route</Text>
+                    <Text style={[styles.optionTitle, { color: COLORS.purple }]}>{t('Find Hotels')}</Text>
+                    <Text style={styles.optionSubtitle}>{t('Discover free stays\non your route')}</Text>
 
                     <TouchableOpacity
                         style={[styles.ctaButton, { backgroundColor: COLORS.purple }]}
                         activeOpacity={0.85}
                         onPress={onFindHotels}
                     >
-                        <Text style={styles.ctaText}>Find Hotel</Text>
+                        <Text style={styles.ctaText}>{t('Find Hotel')}</Text>
                         <Ionicons name="arrow-forward" size={16} color="#FFFFFF" />
                     </TouchableOpacity>
                 </View>
@@ -156,16 +158,16 @@ const SearchView = () => {
                     <View style={styles.howItWorksBadge}>
                         <Ionicons name="checkmark" size={14} color={COLORS.white} />
                     </View>
-                    <Text style={styles.howItWorksTitle}>How it works?</Text>
+                        <Text style={styles.howItWorksTitle}>{t('How it works?')}</Text>
                 </View>
 
                 <View style={styles.howItWorksBody}>
                     <View style={styles.stepsList}>
                         {[
-                            "Enter your pickup and drop points",
-                            "Choose Restaurants or Hotels",
-                            "View all available options on your route",
-                            "Tap to see full details and terms",
+                            t('Enter your pickup and drop points'),
+                            t('Choose Restaurants or Hotels'),
+                            t('View all available options on your route'),
+                            t('Tap to see full details and terms'),
                         ].map((step, index) => (
                             <View key={step} style={styles.stepRow}>
                                 <Text style={styles.stepNumber}>{index + 1}.</Text>

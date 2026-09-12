@@ -1,7 +1,9 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Feather, Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 
 const SupportHighlights = () => {
+  const { t } = useLanguage();
   const highlights = [
     {
       id: '1',
@@ -31,7 +33,7 @@ const SupportHighlights = () => {
         <View key={item.id} style={styles.highlightCard}>
           <View style={styles.highlightIconBg}>{item.icon}</View>
           <Text style={styles.highlightText} numberOfLines={1}>
-            {item.title}
+            {t(item.title)}
           </Text>
         </View>
       ))}

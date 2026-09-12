@@ -1,15 +1,16 @@
+import { TranslationKey, useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import Constants from "expo-constants";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
-  Image,
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  useWindowDimensions,
-  View,
+    Image,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    useWindowDimensions,
+    View,
 } from "react-native";
 
 const COLORS = {
@@ -62,10 +63,24 @@ const supportMenu: MenuItem[] = [
 ];
 
 const DrawerContent = (props: any) => {
+  const { t } = useLanguage();
   const { width: screenWidth } = useWindowDimensions();
   const drawerWidth = screenWidth * 0.82;
   const logoWidth = drawerWidth * 1;
   const appVersion = Constants.expoConfig?.version ?? "0.0.0";
+
+  const menuTranslations: Record<string, TranslationKey> = {
+    Home: "home",
+    "Free Food": "freeFood",
+    "Free Stay": "freeStay",
+    Services: "services",
+    Activities: "activities",
+    "My Bookings": "myBookings",
+    "My Vehicle": "myVehicle",
+    Wallet: "wallet",
+    "Help & Support": "helpSupport",
+    "About Miles Assist": "about",
+  };
 
   const [isTierOpen, setIsTierOpen] = useState(false);
 
@@ -100,7 +115,7 @@ const DrawerContent = (props: any) => {
           <Ionicons name={item.icon} size={22} color={item.iconColor} />
         </View>
       )}
-      <Text style={styles.menuText}>{item.label}</Text>
+      <Text style={styles.menuText}>{t(menuTranslations[item.label] ?? "home")}</Text>
       <Ionicons name="chevron-forward" size={18} color="#C4C7CD" />
     </TouchableOpacity>
   );

@@ -1,14 +1,16 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const ServiceHero = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
         <Ionicons name="business" size={40} color={colors.primary} />
       </View>
-      <Text style={styles.title}>Hotels</Text>
+      <Text style={styles.title}>{t('Hotels')}</Text>
       <Text style={styles.subtitle}>
         Find partner hotels offering free stay{'\n'}for eligible Miles Assist drivers.
       </Text>

@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image, Linking, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -75,6 +76,7 @@ const socialLinks = [
 ];
 
 const AboutUs = () => {
+  const { t } = useLanguage();
   const [openLegalId, setOpenLegalId] = useState<string | null>(null);
 
   const openLink = (url: string) => {
@@ -92,11 +94,9 @@ const AboutUs = () => {
 
       {/* Mission statement */}
       <View style={styles.missionCard}>
-        <Text style={styles.missionTitle}>Our Mission</Text>
+        <Text style={styles.missionTitle}>{t('Our Mission')}</Text>
         <Text style={styles.missionText}>
-          Miles Assist exists to make life on the road easier for drivers. From free food and
-          stay to insurance, legal support, and emergency help — we're building one platform
-          that stands beside drivers at every mile of their journey.
+          {t("Miles Assist exists to make life on the road easier for drivers. From free food and\nstay to insurance, legal support, and emergency help — we're building one platform\nthat stands beside drivers at every mile of their journey.")}
         </Text>
       </View>
 
@@ -108,13 +108,13 @@ const AboutUs = () => {
               <MaterialCommunityIcons name={stat.icon as any} size={20} color={colors.primary} />
             </View>
             <Text style={styles.statValue}>{stat.value}</Text>
-            <Text style={styles.statLabel}>{stat.label}</Text>
+            <Text style={styles.statLabel}>{t(stat.label)}</Text>
           </View>
         ))}
       </View>
 
       {/* Values */}
-      <Text style={styles.sectionTitle}>What We Stand For</Text>
+      <Text style={styles.sectionTitle}>{t('What We Stand For')}</Text>
       <View style={styles.valuesCard}>
         {values.map((value, index) => (
           <View
@@ -125,15 +125,15 @@ const AboutUs = () => {
               <Ionicons name={value.icon as any} size={20} color={colors.primary} />
             </View>
             <View style={styles.valueTextWrap}>
-              <Text style={styles.valueTitle}>{value.title}</Text>
-              <Text style={styles.valueDescription}>{value.description}</Text>
+              <Text style={styles.valueTitle}>{t(value.title)}</Text>
+              <Text style={styles.valueDescription}>{t(value.description)}</Text>
             </View>
           </View>
         ))}
       </View>
 
       {/* Legal links */}
-      <Text style={styles.sectionTitle}>Legal</Text>
+      <Text style={styles.sectionTitle}>{t('Legal')}</Text>
       <View style={styles.linksCard}>
         {legalLinks.map((link, index) => (
               <View key={link.id}>
@@ -149,7 +149,7 @@ const AboutUs = () => {
                   <View style={styles.linkIconWrap}>
                     <Ionicons name={link.icon as any} size={18} color={colors.primary} />
                   </View>
-                  <Text style={styles.linkTitle}>{link.title}</Text>
+                  <Text style={styles.linkTitle}>{t(link.title)}</Text>
                   <Ionicons
                     name={openLegalId === link.id ? 'chevron-up' : 'chevron-down'}
                     size={18}
@@ -167,7 +167,7 @@ const AboutUs = () => {
       </View>
 
       {/* Social links */}
-      <Text style={styles.sectionTitle}>Follow Us</Text>
+      <Text style={styles.sectionTitle}>{t('Follow Us')}</Text>
       <View style={styles.socialRow}>
         {socialLinks.map((social) => (
           <TouchableOpacity
@@ -177,7 +177,7 @@ const AboutUs = () => {
             onPress={() => openLink(social.url)}
           >
             <Ionicons name={social.icon as any} size={22} color={colors.primary} />
-            <Text style={styles.socialText}>{social.title}</Text>
+            <Text style={styles.socialText}>{t(social.title)}</Text>
           </TouchableOpacity>
         ))}
       </View>
@@ -186,7 +186,7 @@ const AboutUs = () => {
       <View style={styles.contactCard}>
         <Ionicons name="mail-outline" size={20} color={colors.primary} />
         <View style={styles.contactTextWrap}>
-          <Text style={styles.contactTitle}>Get in Touch</Text>
+          <Text style={styles.contactTitle}>{t('Get in Touch')}</Text>
           <Text style={styles.contactSubtitle}>support@milesassist.com</Text>
         </View>
       </View>

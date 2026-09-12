@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import {
@@ -33,6 +34,7 @@ const initialInfo = {
 };
 
 const MyInformationView = () => {
+  const { t } = useLanguage();
   const [isEditing, setIsEditing] = useState(false);
   const [info, setInfo] = useState(initialInfo);
 
@@ -67,13 +69,13 @@ const MyInformationView = () => {
 
         <View style={styles.verifiedTag}>
           <Ionicons name="shield-checkmark" size={13} color={colors.success} />
-          <Text style={styles.verifiedTagText}>Verified Driver Partner</Text>
+          <Text style={styles.verifiedTagText}>{t('Verified Driver Partner')}</Text>
         </View>
       </View>
 
       {/* Personal details */}
       <View style={styles.sectionHeaderRow}>
-        <Text style={styles.sectionTitle}>Personal Details</Text>
+        <Text style={styles.sectionTitle}>{t('Personal Details')}</Text>
         <TouchableOpacity
           style={styles.editToggle}
           activeOpacity={0.7}
@@ -84,7 +86,7 @@ const MyInformationView = () => {
             size={14}
             color={colors.primary}
           />
-          <Text style={styles.editToggleText}>{isEditing ? 'Cancel' : 'Edit'}</Text>
+          <Text style={styles.editToggleText}>{isEditing ? t('Cancel') : t('Edit')}</Text>
         </TouchableOpacity>
       </View>
 
@@ -115,7 +117,7 @@ const MyInformationView = () => {
       </View>
 
       {/* Contact details */}
-      <Text style={styles.sectionTitle}>Contact Details</Text>
+      <Text style={styles.sectionTitle}>{t('Contact Details')}</Text>
       <View style={styles.card}>
         <InfoField
           icon="call-outline"
@@ -144,7 +146,7 @@ const MyInformationView = () => {
       </View>
 
       {/* Emergency contact */}
-      <Text style={styles.sectionTitle}>Emergency Contact</Text>
+      <Text style={styles.sectionTitle}>{t('Emergency Contact')}</Text>
       <View style={styles.card}>
         <InfoField
           icon="alert-circle-outline"
@@ -158,14 +160,14 @@ const MyInformationView = () => {
       </View>
 
       {/* Miles Assist ID (read-only, non-editable) */}
-      <Text style={styles.sectionTitle}>Account ID</Text>
+      <Text style={styles.sectionTitle}>{t('Account ID')}</Text>
       <View style={styles.card}>
         <View style={styles.readOnlyRow}>
           <View style={styles.fieldIconWrap}>
             <MaterialCommunityIcons name="card-account-details-outline" size={18} color={colors.primary} />
           </View>
           <View style={styles.fieldTextWrap}>
-            <Text style={styles.fieldLabel}>Miles Assist ID</Text>
+            <Text style={styles.fieldLabel}>{t('Miles Assist ID')}</Text>
             <Text style={styles.fieldValueReadOnly}>MA12345678</Text>
           </View>
           <View style={styles.lockedBadge}>
@@ -177,7 +179,7 @@ const MyInformationView = () => {
       {isEditing && (
         <TouchableOpacity style={styles.saveButton} activeOpacity={0.85} onPress={handleSave}>
           <Ionicons name="checkmark" size={18} color={colors.white} />
-          <Text style={styles.saveButtonText}>Save Changes</Text>
+          <Text style={styles.saveButtonText}>{t('Save Changes')}</Text>
         </TouchableOpacity>
       )}
 

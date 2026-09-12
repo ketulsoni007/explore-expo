@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -70,6 +71,7 @@ const transactions = [
 ];
 
 const WalletView = () => {
+  const { t } = useLanguage();
   return (
     <ScrollView
       style={styles.container}
@@ -84,16 +86,16 @@ const WalletView = () => {
           </View>
           <TouchableOpacity style={styles.historyButton} activeOpacity={0.7}>
             <Ionicons name="time-outline" size={14} color={colors.white} />
-            <Text style={styles.historyButtonText}>History</Text>
+            <Text style={styles.historyButtonText}>{t('History')}</Text>
           </TouchableOpacity>
         </View>
 
-        <Text style={styles.balanceLabel}>Available Balance</Text>
+        <Text style={styles.balanceLabel}>{t('Available Balance')}</Text>
         <Text style={styles.balanceValue}>₹{wallet.balance.toLocaleString('en-IN')}</Text>
 
         <TouchableOpacity style={styles.addMoneyButton} activeOpacity={0.85}>
           <Ionicons name="add-circle-outline" size={18} color={colors.primary} />
-          <Text style={styles.addMoneyText}>Add Money</Text>
+          <Text style={styles.addMoneyText}>{t('Add Money')}</Text>
         </TouchableOpacity>
       </View>
 
@@ -103,22 +105,22 @@ const WalletView = () => {
           <View style={[styles.summaryIconWrap, { backgroundColor: colors.successBg }]}>
             <Ionicons name="arrow-down" size={16} color={colors.success} />
           </View>
-          <Text style={styles.summaryLabel}>Credited</Text>
+          <Text style={styles.summaryLabel}>{t('Credited')}</Text>
           <Text style={[styles.summaryValue, { color: colors.success }]}>
             +₹{wallet.thisMonthCredit.toLocaleString('en-IN')}
           </Text>
-          <Text style={styles.summarySubtext}>This month</Text>
+          <Text style={styles.summarySubtext}>{t('This month')}</Text>
         </View>
 
         <View style={styles.summaryCard}>
           <View style={[styles.summaryIconWrap, { backgroundColor: colors.dangerBg }]}>
             <Ionicons name="arrow-up" size={16} color={colors.danger} />
           </View>
-          <Text style={styles.summaryLabel}>Debited</Text>
+          <Text style={styles.summaryLabel}>{t('Debited')}</Text>
           <Text style={[styles.summaryValue, { color: colors.danger }]}>
             -₹{wallet.thisMonthDebit.toLocaleString('en-IN')}
           </Text>
-          <Text style={styles.summarySubtext}>This month</Text>
+          <Text style={styles.summarySubtext}>{t('This month')}</Text>
         </View>
       </View>
 
@@ -128,36 +130,36 @@ const WalletView = () => {
           <View style={styles.quickActionIconWrap}>
             <MaterialCommunityIcons name="bank-transfer-out" size={20} color={colors.primary} />
           </View>
-          <Text style={styles.quickActionText}>Withdraw</Text>
+          <Text style={styles.quickActionText}>{t('Withdraw')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.quickAction} activeOpacity={0.7}>
           <View style={styles.quickActionIconWrap}>
             <MaterialCommunityIcons name="bank-outline" size={20} color={colors.primary} />
           </View>
-          <Text style={styles.quickActionText}>Bank Details</Text>
+          <Text style={styles.quickActionText}>{t('Bank Details')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.quickAction} activeOpacity={0.7}>
           <View style={styles.quickActionIconWrap}>
             <MaterialCommunityIcons name="star-outline" size={20} color={colors.primary} />
           </View>
-          <Text style={styles.quickActionText}>Rewards</Text>
+          <Text style={styles.quickActionText}>{t('Rewards')}</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.quickAction} activeOpacity={0.7}>
           <View style={styles.quickActionIconWrap}>
             <MaterialCommunityIcons name="file-document-outline" size={20} color={colors.primary} />
           </View>
-          <Text style={styles.quickActionText}>Statements</Text>
+          <Text style={styles.quickActionText}>{t('Statements')}</Text>
         </TouchableOpacity>
       </View>
 
       {/* Transaction history */}
       <View style={styles.historyHeaderRow}>
-        <Text style={styles.sectionTitle}>Recent Transactions</Text>
+        <Text style={styles.sectionTitle}>{t('Recent Transactions')}</Text>
         <TouchableOpacity activeOpacity={0.7}>
-          <Text style={styles.viewAllText}>View All</Text>
+          <Text style={styles.viewAllText}>{t('View All')}</Text>
         </TouchableOpacity>
       </View>
 

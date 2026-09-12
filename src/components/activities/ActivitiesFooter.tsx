@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import {
     StyleSheet,
@@ -10,6 +11,7 @@ import {
 const NARROW_BREAKPOINT = 400;
 
 const ActivitiesFooter = () => {
+  const { t } = useLanguage();
   const { width } = useWindowDimensions();
   const isNarrow = width < NARROW_BREAKPOINT;
 
@@ -23,10 +25,9 @@ const ActivitiesFooter = () => {
         </View>
 
         <View style={styles.textContent}>
-          <Text style={styles.title}>We're With You, Every Mile!</Text>
+          <Text style={styles.title}>{t("We're With You, Every Mile!")}</Text>
           <Text style={styles.subtitle}>
-            Keep using Miles Assist services and we'll keep making your
-            journey easier.
+            {t("Keep using Miles Assist services and we'll keep making your journey easier.")}
           </Text>
         </View>
       </View>
@@ -35,7 +36,7 @@ const ActivitiesFooter = () => {
         style={[styles.button, isNarrow && styles.buttonFullWidth]}
         activeOpacity={0.85}
       >
-        <Text style={styles.buttonText}>Explore Services</Text>
+        <Text style={styles.buttonText}>{t('Explore Services')}</Text>
       </TouchableOpacity>
     </View>
   );

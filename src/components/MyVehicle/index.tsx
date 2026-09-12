@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -66,6 +67,7 @@ const statusConfig = {
 };
 
 const MyVehicleView = () => {
+  const { t } = useLanguage();
   return (
     <ScrollView style={styles.container}>
       {/* Header card */}
@@ -76,7 +78,7 @@ const MyVehicleView = () => {
           </View>
           <TouchableOpacity style={styles.editButton} activeOpacity={0.7}>
             <Ionicons name="pencil" size={14} color={colors.primary} />
-            <Text style={styles.editButtonText}>Edit</Text>
+            <Text style={styles.editButtonText}>{t('Edit')}</Text>
           </TouchableOpacity>
         </View>
 
@@ -91,7 +93,7 @@ const MyVehicleView = () => {
           {vehicle.verified && (
             <View style={styles.verifiedTag}>
               <Ionicons name="checkmark-circle" size={14} color={colors.success} />
-              <Text style={styles.verifiedTagText}>Verified</Text>
+              <Text style={styles.verifiedTagText}>{t('Verified')}</Text>
             </View>
           )}
         </View>
@@ -101,28 +103,28 @@ const MyVehicleView = () => {
       <View style={styles.statsGrid}>
         <View style={styles.statCard}>
           <MaterialCommunityIcons name="car-side" size={20} color={colors.primary} />
-          <Text style={styles.statLabel}>Type</Text>
+          <Text style={styles.statLabel}>{t('Type')}</Text>
           <Text style={styles.statValue}>{vehicle.type}</Text>
         </View>
         <View style={styles.statCard}>
           <MaterialCommunityIcons name="gas-station-outline" size={20} color={colors.primary} />
-          <Text style={styles.statLabel}>Fuel</Text>
+          <Text style={styles.statLabel}>{t('Fuel')}</Text>
           <Text style={styles.statValue}>{vehicle.fuelType}</Text>
         </View>
         <View style={styles.statCard}>
           <Ionicons name="calendar-outline" size={20} color={colors.primary} />
-          <Text style={styles.statLabel}>Year</Text>
+          <Text style={styles.statLabel}>{t('Year')}</Text>
           <Text style={styles.statValue}>{vehicle.year}</Text>
         </View>
         <View style={styles.statCard}>
           <MaterialCommunityIcons name="palette-outline" size={20} color={colors.primary} />
-          <Text style={styles.statLabel}>Color</Text>
+          <Text style={styles.statLabel}>{t('Color')}</Text>
           <Text style={styles.statValue}>{vehicle.color}</Text>
         </View>
       </View>
 
       {/* Documents section */}
-      <Text style={styles.sectionTitle}>Vehicle Documents</Text>
+      <Text style={styles.sectionTitle}>{t('Vehicle Documents')}</Text>
       <View style={styles.documentsCard}>
         {documents.map((doc, index) => {
           const config = statusConfig[doc.status as keyof typeof statusConfig];
@@ -167,7 +169,7 @@ const MyVehicleView = () => {
       {/* Action button */}
       <TouchableOpacity style={styles.primaryButton} activeOpacity={0.85}>
         <MaterialCommunityIcons name="upload-outline" size={18} color={colors.white} />
-        <Text style={styles.primaryButtonText}>Update Documents</Text>
+        <Text style={styles.primaryButtonText}>{t('Update Documents')}</Text>
       </TouchableOpacity>
       <View style={{ paddingBottom: 60 }} />
     </ScrollView>

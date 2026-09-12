@@ -1,5 +1,6 @@
 // app/_layout.tsx
 import VideoSplash from "@/components/VideoSplash";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useCallback, useState } from "react";
@@ -23,10 +24,12 @@ export default function RootLayout() {
   }
 
   return (
-    <Stack
-      screenOptions={{
-        headerShown: false,
-      }}
-    />
+    <LanguageProvider>
+      <Stack
+        screenOptions={{
+          headerShown: false,
+        }}
+      />
+    </LanguageProvider>
   );
 }

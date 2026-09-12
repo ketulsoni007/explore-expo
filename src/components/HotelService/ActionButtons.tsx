@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from './colors';
@@ -8,17 +9,18 @@ type Props = {
 };
 
 const ActionButtons = ({ onFindHotels, onCallSupport }: Props) => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <TouchableOpacity style={styles.primaryButton} onPress={onFindHotels} activeOpacity={0.85}>
         <Ionicons name="business" size={18} color={colors.white} style={styles.leftIcon} />
-        <Text style={styles.primaryButtonText}>Find Hotels Near You</Text>
+        <Text style={styles.primaryButtonText}>{t('Find Hotels Near You')}</Text>
         <Ionicons name="chevron-forward" size={18} color={colors.white} style={styles.rightIcon} />
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.supportLink} onPress={onCallSupport} activeOpacity={0.7}>
         <Ionicons name="call-outline" size={16} color={colors.primary} style={styles.leftIcon} />
-        <Text style={styles.supportText}>Need Help? Call Support 24x7</Text>
+        <Text style={styles.supportText}>{t('Need Help? Call Support 24x7')}</Text>
       </TouchableOpacity>
     </View>
   );

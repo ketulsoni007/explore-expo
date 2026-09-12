@@ -1,18 +1,19 @@
+import { useLanguage } from '@/context/LanguageContext';
 import {
-  FontAwesome5,
-  Ionicons,
-  MaterialCommunityIcons,
+    FontAwesome5,
+    Ionicons,
+    MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import { useState } from 'react';
 import {
-  FlatList,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    FlatList,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 import HistoryDetailModal, {
-  HistoryItem,
+    HistoryItem,
 } from './HistoryDetailModal';
 
 const TABS = ['All', 'Food History', 'Stay History', 'Reward History'];
@@ -176,6 +177,7 @@ const HistoryRow = ({
   item: HistoryItem;
   onPress: () => void;
 }) => {
+  const { t } = useLanguage();
   return (
     <TouchableOpacity style={styles.row} activeOpacity={0.7} onPress={onPress}>
       <View style={[styles.iconCircle, { backgroundColor: item.iconBg }]}>
@@ -183,17 +185,17 @@ const HistoryRow = ({
       </View>
       <View style={styles.rowContent}>
         <Text style={styles.rowTitle} numberOfLines={1} ellipsizeMode="tail">
-          {item.title}
+          {t(item.title)}
         </Text>
         <Text style={styles.rowSubtitle} numberOfLines={1} ellipsizeMode="tail">
-          {item.subtitle}
+          {t(item.subtitle)}
         </Text>
       </View>
       <Text style={styles.rowDate}>{item.date}</Text>
       <View style={styles.rightCol}>
         <View style={[styles.tag, { backgroundColor: item.tagBg }]}>
           <Text style={[styles.tagText, { color: item.tagColor }]} numberOfLines={1}>
-            {item.tagText}
+            {t(item.tagText)}
           </Text>
         </View>
       </View>
@@ -209,6 +211,7 @@ const HistoryRow = ({
 };
 
 const ActivitiesHistory = () => {
+  const { t } = useLanguage();
   const [activeTab, setActiveTab] = useState('All');
   const [selectedItem, setSelectedItem] = useState<HistoryItem | null>(null);
   const [modalVisible, setModalVisible] = useState(false);
@@ -234,7 +237,7 @@ const ActivitiesHistory = () => {
   return (
     <View>
       <View style={styles.header}>
-        <Text style={styles.headerTitle}>All History</Text>
+        <Text style={styles.headerTitle}>{t('All History')}</Text>
 
         <View style={styles.tabsTrack}>
           <FlatList
@@ -254,7 +257,7 @@ const ActivitiesHistory = () => {
                   <Text
                     style={[styles.tabText, isActive && styles.tabTextActive]}
                   >
-                    {item}
+                    {t(item)}
                   </Text>
                 </TouchableOpacity>
               );
@@ -278,7 +281,7 @@ const ActivitiesHistory = () => {
         />
 
         <TouchableOpacity style={styles.viewFullRow} activeOpacity={0.7}>
-          <Text style={styles.viewFullText}>View Full History</Text>
+          <Text style={styles.viewFullText}>{t('View Full History')}</Text>
           <Ionicons name="chevron-forward" size={16} color="#2F5CFF" />
         </TouchableOpacity>
       </View>

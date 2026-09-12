@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { Linking, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -44,6 +45,7 @@ const DetailInformation = ({
   estimatedTime = isHotel ? "8 min drive" : "5 min drive",
   phoneNumber = "+911234567890",
 }: DetailInformationProps) => {
+  const { t } = useLanguage();
   const [isAboutExpanded, setIsAboutExpanded] = useState(false);
 
   const theme = isHotel ? HOTEL_THEME : RESTAURANT_THEME;
@@ -167,13 +169,12 @@ const styles = StyleSheet.create({
 
   sectionHeaderRow: {
     flexDirection: "row",
-    alignItems: "center",
     gap: 8,
   },
 
   sectionHeaderText: {
     fontSize: 15.5,
-    fontWeight: "800",
+    fontWeight: "700",
     color: "#0F172A",
   },
 
@@ -187,7 +188,6 @@ const styles = StyleSheet.create({
   readMoreRow: {
     flexDirection: "row",
     alignItems: "center",
-    gap: 3,
     marginTop: 6,
   },
 
@@ -200,14 +200,11 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     flexWrap: "wrap",
     gap: 10,
-    marginTop: 12,
   },
 
   perkCard: {
     width: 120,
-    borderRadius: 14,
-    padding: 12,
-    alignItems: 'center'
+    alignItems: 'center',
   },
 
   perkTitle: {
@@ -217,7 +214,7 @@ const styles = StyleSheet.create({
     marginTop: 8,
   },
 
-  perksListContent: {
+  perkIcon: {
     marginTop: 12,
     paddingRight: 4,
   },

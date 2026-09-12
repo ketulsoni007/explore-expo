@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from "@expo/vector-icons";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
@@ -18,6 +19,7 @@ type PickupPointProps = {
 };
 
 const PickupPoint = ({ isHotel, pickupLocation, dropLocation, onSwap }: PickupPointProps) => {
+  const { t } = useLanguage();
   const routeImage = isHotel
     ? require("@/assets/images/hotel-on-route.png")
     : require("@/assets/images/rest-on-route.png");
@@ -29,7 +31,7 @@ const PickupPoint = ({ isHotel, pickupLocation, dropLocation, onSwap }: PickupPo
           <View style={styles.pointBlock}>
             <View style={styles.labelRow}>
               <View style={[styles.dot, { backgroundColor: COLORS.green }]} />
-              <Text style={[styles.pointLabel, { color: COLORS.green }]}>Pickup</Text>
+             <Text style={[styles.pointLabel, { color: COLORS.green }]}>{t('Pickup')}</Text>
             </View>
             <Text style={styles.pointValue}>{pickupLocation}</Text>
           </View>
@@ -44,7 +46,7 @@ const PickupPoint = ({ isHotel, pickupLocation, dropLocation, onSwap }: PickupPo
           <View style={[styles.pointBlock, styles.pointBlockRight]}>
             <View style={styles.labelRow}>
               <View style={[styles.dot, { backgroundColor: COLORS.red }]} />
-              <Text style={[styles.pointLabel, { color: COLORS.red }]}>Drop</Text>
+             <Text style={[styles.pointLabel, { color: COLORS.red }]}>{t('Drop')}</Text>
             </View>
             <Text style={styles.pointValue}>{dropLocation}</Text>
           </View>

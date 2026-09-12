@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useMemo } from 'react';
 import {
@@ -98,6 +99,7 @@ const HistoryDetailModal = ({
   historyItem,
   onClose,
 }: HistoryDetailModalProps) => {
+  const { t } = useLanguage();
   const config = useMemo(
     () => (historyItem ? TYPE_CONFIG[historyItem.type] : TYPE_CONFIG.meal),
     [historyItem],

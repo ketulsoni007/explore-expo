@@ -1,6 +1,7 @@
+import { useLanguage } from '@/context/LanguageContext';
 import {
-  Ionicons,
-  MaterialCommunityIcons,
+    Ionicons,
+    MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -76,6 +77,7 @@ const faqItems = [
 ];
 
 export default function SupportListMenu() {
+  const { t } = useLanguage();
   const [openMenuId, setOpenMenuId] = useState<string | null>(null);
   const [faqOpen, setFaqOpen] = useState(false);
   const [openQuestionId, setOpenQuestionId] = useState<string | null>(null);
@@ -100,8 +102,8 @@ export default function SupportListMenu() {
             <View style={styles.menuIconBg}>{item.icon}</View>
 
             <View style={styles.menuTextContent}>
-              <Text style={styles.menuTitle}>{item.title}</Text>
-              <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
+              <Text style={styles.menuTitle}>{t(item.title)}</Text>
+              <Text style={styles.menuSubtitle}>{t(item.subtitle)}</Text>
             </View>
 
             <Ionicons
@@ -112,7 +114,7 @@ export default function SupportListMenu() {
           </TouchableOpacity>
           {openMenuId === item.id && (
             <View style={localStyles.menuAnswerWrap}>
-              <Text style={localStyles.menuAnswerText}>{item.content}</Text>
+              <Text style={localStyles.menuAnswerText}>{t(item.content)}</Text>
             </View>
           )}
         </View>
@@ -129,8 +131,8 @@ export default function SupportListMenu() {
         </View>
 
         <View style={styles.menuTextContent}>
-          <Text style={styles.menuTitle}>Frequently Asked Questions</Text>
-          <Text style={styles.menuSubtitle}>Find answers to common questions</Text>
+          <Text style={styles.menuTitle}>{t('Frequently Asked Questions')}</Text>
+          <Text style={styles.menuSubtitle}>{t('Find answers to common questions')}</Text>
         </View>
 
         <Ionicons
@@ -157,7 +159,7 @@ export default function SupportListMenu() {
                   activeOpacity={0.7}
                   onPress={() => toggleQuestion(faq.id)}
                 >
-                  <Text style={localStyles.faqQuestionText}>{faq.question}</Text>
+                  <Text style={localStyles.faqQuestionText}>{t(faq.question)}</Text>
                   <Ionicons
                     name={isOpen ? 'remove' : 'add'}
                     size={18}
@@ -167,7 +169,7 @@ export default function SupportListMenu() {
 
                 {isOpen && (
                   <View style={localStyles.faqAnswerWrap}>
-                    <Text style={localStyles.faqAnswerText}>{faq.answer}</Text>
+                    <Text style={localStyles.faqAnswerText}>{t(faq.answer)}</Text>
                   </View>
                 )}
               </View>

@@ -1,7 +1,9 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 
 const SupportHero = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.heroContainer}>
       <View style={styles.heroIconCircle}>
@@ -10,9 +12,9 @@ const SupportHero = () => {
           <Text style={styles.heroBadgeText}>24/7</Text>
         </View>
       </View>
-      <Text style={styles.heroTitle}>24/7 Support</Text>
+      <Text style={styles.heroTitle}>{t('24/7 Support')}</Text>
       <Text style={styles.heroSubtitle}>
-        We're here for you, anytime, anywhere.{'\n'}Get help whenever you need it.
+        {t("We're here for you, anytime, anywhere.\nGet help whenever you need it.")}
       </Text>
     </View>
   );

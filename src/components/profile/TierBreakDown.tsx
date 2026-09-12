@@ -1,10 +1,11 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import {
-  ScrollView,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    ScrollView,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from 'react-native';
 
 // ----------------------------------------------------
@@ -84,6 +85,7 @@ const TierBreakDown = ({
   data = STATIC_TIERS,
   onTierSelect,
 }: TierBreakDownProps) => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       {/* Cards List */}
@@ -109,11 +111,11 @@ const TierBreakDown = ({
             </View>
 
             {/* Tier Name */}
-            <Text style={styles.tierName}>{item.name}</Text>
+            <Text style={styles.tierName}>{t(item.name)}</Text>
 
             {/* Subtitle / Description */}
             <Text style={[styles.tierDescription, { color: item.textColor }]}>
-              {item.description}
+              {t(item.description)}
             </Text>
 
             {/* Small Horizontal Divider */}
@@ -147,7 +149,7 @@ const TierBreakDown = ({
                   },
                 ]}
               >
-                Read More
+                {t('Read More')}
               </Text>
             </TouchableOpacity>
           </View>

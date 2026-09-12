@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
@@ -8,9 +9,10 @@ const ITEMS = [
 ];
 
 const WhoCanAvail = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Who Can Avail</Text>
+      <Text style={styles.heading}>{t('Who Can Avail')}</Text>
       {ITEMS.map((item) => (
         <View key={item} style={styles.row}>
           <View style={styles.dot} />

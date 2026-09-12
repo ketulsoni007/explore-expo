@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { router } from 'expo-router';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -23,6 +24,7 @@ type MenuRowProps = {
 };
 
 const MenuRow = ({ item, isLast }: MenuRowProps) => {
+  const { t } = useLanguage();
   return (
     <TouchableOpacity
       style={[styles.menuRow, !isLast && styles.menuRowBorder]}
@@ -35,8 +37,8 @@ const MenuRow = ({ item, isLast }: MenuRowProps) => {
       </View>
       
       <View style={styles.menuContent}>
-        <Text style={styles.menuTitle}>{item.title}</Text>
-        <Text style={styles.menuSubtitle}>{item.subtitle}</Text>
+        <Text style={styles.menuTitle}>{t(item.title)}</Text>
+        <Text style={styles.menuSubtitle}>{t(item.subtitle)}</Text>
       </View>
 
       {item.badge && (
