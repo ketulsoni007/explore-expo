@@ -175,7 +175,7 @@ const RouteResult = ({
           >
             <View style={styles.thumbnailWrapper}>
               <Image source={item.image} style={styles.thumbnail} resizeMode="cover" />
-              <View style={{...styles.freeBadge,backgroundColor: COLORS.orange}}>
+              <View style={{...styles.freeBadge,backgroundColor: isHotel ? COLORS.blue : COLORS.orange}}>
                 <Text style={styles.freeBadgeText}>100% Free</Text>
               </View>
             </View>
@@ -188,7 +188,7 @@ const RouteResult = ({
               </Text>
               <View style={styles.distanceRow}>
                 <Ionicons name="location-outline" size={13} color={isHotel ? COLORS.blue : COLORS.orange} />
-                <Text style={{...styles.distanceText,color:COLORS.orange}}>
+                <Text style={{...styles.distanceText,color: isHotel ? COLORS.blue : COLORS.orange}}>
                   {item.distance} km from your route
                 </Text>
               </View>

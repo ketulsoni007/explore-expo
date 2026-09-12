@@ -378,7 +378,7 @@ const styles = StyleSheet.create({
 
     howItWorksBody: {
         flexDirection: "row",
-        marginTop: 14,
+        marginTop: 4,
         alignItems: "center",
     },
 
@@ -388,21 +388,20 @@ const styles = StyleSheet.create({
 
     stepRow: {
         flexDirection: "row",
-        marginBottom: 8,
+        marginBottom: 2,
     },
 
     stepNumber: {
         fontSize: 13,
         fontWeight: "700",
-        color: "#2563EB",
-        width: 18,
+        color: "#2563EB"
     },
 
     stepText: {
-        fontSize: 13,
+        fontSize: 10,
         color: COLORS.blueText,
         flex: 1,
-        lineHeight: 18,
+        lineHeight: 20,
     },
 
     mapIllustration: {

@@ -274,8 +274,8 @@ const styles = StyleSheet.create({
   },
   freeTag: {
     position: 'absolute',
-    top: -4,
-    right: 0,
+    top: -5,
+    right: -1,
     width: 52,
     height: 52,
     zIndex: 2,

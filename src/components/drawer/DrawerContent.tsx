@@ -1,4 +1,5 @@
 import { Ionicons } from "@expo/vector-icons";
+import Constants from "expo-constants";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
@@ -64,6 +65,7 @@ const DrawerContent = (props: any) => {
   const { width: screenWidth } = useWindowDimensions();
   const drawerWidth = screenWidth * 0.82;
   const logoWidth = drawerWidth * 1;
+  const appVersion = Constants.expoConfig?.version ?? "0.0.0";
 
   const [isTierOpen, setIsTierOpen] = useState(false);
 
@@ -198,7 +200,7 @@ const DrawerContent = (props: any) => {
           <Ionicons name="log-out-outline" size={20} color={COLORS.red} />
           <Text style={styles.logoutText}>Logout</Text>
         </TouchableOpacity>
-        <Text style={styles.versionText}>Version 1.0.0</Text>
+        <Text style={styles.versionText}>Version {appVersion}</Text>
       </View>
     </ScrollView>
   );
@@ -390,6 +392,7 @@ const styles = StyleSheet.create({
     fontSize: 11,
     color: "#9CA3AF",
     marginTop: 16,
+    paddingBottom: 26,
   },
 });
 

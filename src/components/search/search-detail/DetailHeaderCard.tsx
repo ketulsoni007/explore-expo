@@ -65,7 +65,7 @@ const DetailHeaderCard = ({
              <View style={[styles.driverBadge, { backgroundColor: isHotel ? theme.primaryBg : RESTAURANT_THEME.primaryBg }]}>
                 <Ionicons name="people" size={14} color={theme.primary} />
                 <Text style={[styles.driverBadgeText, { color: theme.primary }]}>
-                    100+ Miles assist drivers {isHotel ? 'stayed' : 'ate'} here
+                    100+ Miles assist drivers visited here
                 </Text>
             </View>
 

@@ -17,6 +17,7 @@ const TABS = ['All', 'Food History', 'Stay History', 'Reward History'];
 const HISTORY_DATA = [
   {
     id: '1',
+    category: 'Food History',
     title: 'Free Meal',
     subtitle: 'Shree Krishna Dhaba, Ahmedabad',
     date: '18 May',
@@ -35,6 +36,7 @@ const HISTORY_DATA = [
   },
   {
     id: '2',
+    category: 'Stay History',
     title: 'Free Stay',
     subtitle: 'Hotel Highway Inn, Vadodara',
     date: '17 May',
@@ -47,6 +49,7 @@ const HISTORY_DATA = [
   },
   {
     id: '3',
+    category: 'Reward History',
     title: 'Reward Earned',
     subtitle: 'Welcome Bonus',
     date: '17 May',
@@ -59,6 +62,7 @@ const HISTORY_DATA = [
   },
   {
     id: '4',
+    category: 'Reward History',
     title: 'Reward Redeemed',
     subtitle: 'Fuel Voucher',
     date: '16 May',
@@ -71,6 +75,7 @@ const HISTORY_DATA = [
   },
   {
     id: '5',
+    category: 'Other',
     title: 'Insurance Support Requested',
     subtitle: 'Policy Details Shared',
     date: '15 May',
@@ -89,6 +94,7 @@ const HISTORY_DATA = [
   },
   {
     id: '6',
+    category: 'Other',
     title: 'Roadside Assistance Used',
     subtitle: 'Tyre Change Service',
     date: '14 May',
@@ -103,6 +109,7 @@ const HISTORY_DATA = [
   },
   {
     id: '7',
+    category: 'Other',
     title: 'Legal Guidance',
     subtitle: 'Consulted Lawyer',
     date: '13 May',
@@ -121,18 +128,21 @@ const HistoryRow = ({ item }: { item: (typeof HISTORY_DATA)[number] }) => {
       <View style={[styles.iconCircle, { backgroundColor: item.iconBg }]}>
         {item.icon}
       </View>
-
       <View style={styles.rowContent}>
-        <Text style={styles.rowTitle}>{item.title}</Text>
-        <Text style={styles.rowSubtitle}>{item.subtitle}</Text>
-      </View>
-
-      <Text style={styles.rowDate}>{item.date}</Text>
-
-      <View style={[styles.tag, { backgroundColor: item.tagBg }]}>
-        <Text style={[styles.tagText, { color: item.tagColor }]}>
-          {item.tagText}
+        <Text style={styles.rowTitle} numberOfLines={1} ellipsizeMode="tail">
+          {item.title}
         </Text>
+        <Text style={styles.rowSubtitle} numberOfLines={1} ellipsizeMode="tail">
+          {item.subtitle}
+        </Text>
+      </View>
+      <Text style={styles.rowDate}>{item.date}</Text>
+      <View style={styles.rightCol}>
+        <View style={[styles.tag, { backgroundColor: item.tagBg }]}>
+          <Text style={[styles.tagText, { color: item.tagColor }]} numberOfLines={1}>
+            {item.tagText}
+          </Text>
+        </View>
       </View>
 
       <Ionicons
@@ -147,10 +157,17 @@ const HistoryRow = ({ item }: { item: (typeof HISTORY_DATA)[number] }) => {
 
 const ActivitiesHistory = () => {
   const [activeTab, setActiveTab] = useState('All');
+  const filteredHistory =
+    activeTab === 'All'
+      ? HISTORY_DATA
+      : HISTORY_DATA.filter((item) => item.category === activeTab);
+  const displayHistory: ((typeof HISTORY_DATA)[number] | null)[] = [
+    ...filteredHistory,
+    ...Array.from({ length: HISTORY_DATA.length - filteredHistory.length }, () => null),
+  ];
 
   return (
     <View>
-      {/* Title + tabs sit directly on the page background, no card */}
       <View style={styles.header}>
         <Text style={styles.headerTitle}>All History</Text>
 
@@ -180,16 +197,14 @@ const ActivitiesHistory = () => {
           />
         </View>
       </View>
-
-      {/* Rows + "View Full History" are wrapped together in ONE card
-          so the white background, rounded corners and shadow cover
-          the whole block, matching the mockup */}
       <View style={styles.card}>
         <FlatList
-          data={HISTORY_DATA}
-          keyExtractor={(item) => item.id}
-          renderItem={({ item }) => <HistoryRow item={item} />}
-          ItemSeparatorComponent={() => <View style={styles.separator} />}
+          data={displayHistory}
+          keyExtractor={(item, index) => item?.id ?? `empty-${index}`}
+          renderItem={({ item }) =>
+            item ? <HistoryRow item={item} /> : <View style={styles.emptyRow} />
+          }
+          ItemSeparatorComponent={(item) => item ? <View style={styles.separator} /> : <View style={styles.separator} />}
           scrollEnabled={false}
         />
 
@@ -265,7 +280,10 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     paddingHorizontal: 18,
-    paddingVertical: 8,
+    paddingVertical: 10,
+  },
+  emptyRow: {
+    height: 60,
   },
   iconCircle: {
     width: 40,
@@ -275,8 +293,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     marginRight: 12,
   },
+  
+  
+  
   rowContent: {
     flex: 1,
+    minWidth: 0,
+    marginRight: 8,
   },
   rowTitle: {
     fontSize: 14,
@@ -288,30 +311,34 @@ const styles = StyleSheet.create({
     fontSize: 12,
     color: '#8B93A7',
   },
+  
+  
+  
+  rightCol: {
+    alignItems: 'flex-end',
+    marginRight: 4,
+  },
   rowDate: {
-    fontSize: 12,
+    fontSize: 11,
     color: '#8B93A7',
-    width: 90,
-    textAlign: 'right',
-    marginRight: 10,
+    marginRight:4
   },
   tag: {
     borderRadius: 10,
-    paddingHorizontal: 10,
-    paddingVertical: 5,
-    marginRight: 8,
+    paddingHorizontal: 8,
+    paddingVertical: 4,
   },
   tagText: {
-    fontSize: 11,
+    fontSize: 10,
     fontWeight: '700',
   },
   chevron: {
-    marginLeft: 2,
+    marginLeft: 4,
   },
   separator: {
-    height: 1,
-    backgroundColor: '#F0F1F5',
-    marginHorizontal: 18,
+    borderBottomWidth: 1,
+    borderBottomColor: '#E5E7EB',
+    borderStyle: 'dashed'
   },
   viewFullRow: {
     flexDirection: 'row',
