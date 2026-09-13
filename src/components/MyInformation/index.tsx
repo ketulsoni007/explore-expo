@@ -93,14 +93,14 @@ const MyInformationView = () => {
       <View style={styles.card}>
         <InfoField
           icon="person-outline"
-          label="Full Name"
+          label={t('Full Name')}
           value={info.fullName}
           editable={isEditing}
           onChangeText={(v) => handleChange('fullName', v)}
         />
         <InfoField
           icon="calendar-outline"
-          label="Date of Birth"
+          label={t('Date of Birth')}
           value={info.dob}
           editable={isEditing}
           onChangeText={(v) => handleChange('dob', v)}
@@ -108,7 +108,7 @@ const MyInformationView = () => {
         />
         <InfoField
           icon="male-female-outline"
-          label="Gender"
+          label={t('Gender')}
           value={info.gender}
           editable={isEditing}
           onChangeText={(v) => handleChange('gender', v)}
@@ -121,7 +121,7 @@ const MyInformationView = () => {
       <View style={styles.card}>
         <InfoField
           icon="call-outline"
-          label="Phone Number"
+          label={t('Phone Number')}
           value={info.phone}
           editable={isEditing}
           onChangeText={(v) => handleChange('phone', v)}
@@ -129,7 +129,7 @@ const MyInformationView = () => {
         />
         <InfoField
           icon="mail-outline"
-          label="Email Address"
+          label={t('Email Address')}
           value={info.email}
           editable={isEditing}
           onChangeText={(v) => handleChange('email', v)}
@@ -137,7 +137,7 @@ const MyInformationView = () => {
         />
         <InfoField
           icon="location-outline"
-          label="Address"
+          label={t('Address')}
           value={info.address}
           editable={isEditing}
           onChangeText={(v) => handleChange('address', v)}
@@ -150,7 +150,7 @@ const MyInformationView = () => {
       <View style={styles.card}>
         <InfoField
           icon="alert-circle-outline"
-          label="Emergency Contact Number"
+          label={t('Emergency Contact Number')}
           value={info.emergencyContact}
           editable={isEditing}
           onChangeText={(v) => handleChange('emergencyContact', v)}

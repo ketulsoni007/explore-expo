@@ -1,14 +1,14 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useLanguage } from '@/context/LanguageContext';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const AboutSection = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>About This Service</Text>
+      <Text style={styles.heading}>{t('About This Service')}</Text>
       <Text style={styles.body}>
-        Miles Assist provides 24x7 roadside assistance to help you get back on the road as
-        quickly as possible. Just call or request help and our partners will reach you.
+        {t('Miles Assist provides 24x7 roadside assistance to help you get back on the road as quickly as possible. Just call or request help and our partners will reach you.')}
       </Text>
     </View>
   );

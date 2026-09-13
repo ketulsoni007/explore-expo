@@ -1,8 +1,10 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 const AdditionalSupport = () => {
+  const { t } = useLanguage();
   const [expanded, setExpanded] = useState(false);
   const [nestedExpanded, setNestedExpanded] = useState(false);
 
@@ -14,8 +16,8 @@ const AdditionalSupport = () => {
           <MaterialCommunityIcons name="shield-alert-outline" size={20} color="#0F9D58" />
         </View>
         <View style={styles.headerTextWrap}>
-          <Text style={styles.title}>Accident Support Assurance</Text>
-          <Text style={styles.subtitle}>Personal help when you need it most</Text>
+          <Text style={styles.title}>{t('Accident Support Assurance')}</Text>
+          <Text style={styles.subtitle}>{t('Personal help when you need it most')}</Text>
         </View>
       </View>
 
@@ -25,7 +27,7 @@ const AdditionalSupport = () => {
         activeOpacity={0.7}
         onPress={() => setExpanded(!expanded)}
       >
-        <Text style={styles.accordionHeaderText}>What does this cover?</Text>
+        <Text style={styles.accordionHeaderText}>{t('What does this cover?')}</Text>
         <Ionicons
           name={expanded ? 'chevron-up' : 'chevron-down'}
           size={18}
@@ -36,9 +38,7 @@ const AdditionalSupport = () => {
       {expanded && (
         <View style={styles.accordionBody}>
           <Text style={styles.bodyText}>
-            For every 10 days on the road, if an accident happens, you get
-            personal, on-ground help directly from the Miles Assist team —
-            not just a call center. We're with you when it matters.
+            {t('For every 10 days on the road, if an accident happens, you get personal, on-ground help directly from the Miles Assist team — not just a call center. We\'re with you when it matters.')}
           </Text>
 
           {/* Nested accordion for T&C */}
@@ -49,7 +49,7 @@ const AdditionalSupport = () => {
           >
             <View style={styles.nestedHeaderLeft}>
               <Ionicons name="document-text-outline" size={16} color="#6B7280" />
-              <Text style={styles.nestedHeaderText}>Terms & Conditions apply</Text>
+              <Text style={styles.nestedHeaderText}>{t('Terms & Conditions apply')}</Text>
             </View>
             <Ionicons
               name={nestedExpanded ? 'chevron-up' : 'chevron-down'}
@@ -61,12 +61,7 @@ const AdditionalSupport = () => {
           {nestedExpanded && (
             <View style={styles.nestedBody}>
               <Text style={styles.nestedBodyText}>
-                Support eligibility is based on active trip history, policy
-                status, and completion of the minimum trip count within the
-                10-day window. Coverage details, response times, and
-                exclusions are governed by the applicable insurance partner
-                policy. Please refer to the full Terms & Conditions section
-                for complete details.
+                {t('Support eligibility is based on active trip history, policy status, and completion of the minimum trip count within the 10-day window. Coverage details, response times, and exclusions are governed by the applicable insurance partner policy. Please refer to the full Terms & Conditions section for complete details.')}
               </Text>
             </View>
           )}

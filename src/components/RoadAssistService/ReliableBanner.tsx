@@ -1,18 +1,19 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const ReliableBanner = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <View style={styles.iconBox}>
         <Ionicons name="shield-checkmark" size={22} color={colors.primary} />
       </View>
       <View style={styles.textBox}>
-        <Text style={styles.title}>100% Reliable Partners</Text>
+        <Text style={styles.title}>{t('100% Reliable Partners')}</Text>
         <Text style={styles.subtitle}>
-          We work with verified partners to ensure your safety and quick assistance.
+          {t('We work with verified partners to ensure your safety and quick assistance.')}
         </Text>
       </View>
       <View style={styles.checkBadge}>

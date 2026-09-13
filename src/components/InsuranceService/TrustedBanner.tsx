@@ -1,17 +1,19 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const TrustedBanner = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <View style={styles.iconBox}>
         <Ionicons name="shield-checkmark-outline" size={22} color={colors.primary} />
       </View>
       <View style={styles.textBox}>
-        <Text style={styles.title}>100% Trusted Insurance Partners</Text>
+        <Text style={styles.title}>{t('100% Trusted Insurance Partners')}</Text>
         <Text style={styles.subtitle}>
-          All our partners are IRDAI approved and committed to your safety.
+          {t('All our partners are IRDAI approved and committed to your safety.')}
         </Text>
       </View>
       <View style={styles.checkBadge}>

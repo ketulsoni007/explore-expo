@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { router } from "expo-router";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -146,8 +147,9 @@ const RouteResult = ({
   dropLocation = "Vadodara, Gujarat",
   onSwap,
 }: RouteResultProps) => {
+  const { t } = useLanguage();
   const data = isHotel ? HOTEL_DATA : RESTAURENT_DATA;
-  const countLabel = isHotel ? "Hotels" : "Restaurants";
+  const countLabel = isHotel ? t("Hotels") : t("Restaurants");
 
   const onToggleExpand = (id: string) => {
     // TODO: expand card to show more details
@@ -163,7 +165,7 @@ const RouteResult = ({
   return (
     <View>
       <Text style={styles.resultsCount}>
-        {data.length} {countLabel} Found
+        {data.length} {countLabel} {t("Found")}
       </Text>
       <View style={styles.list}>
         {data.map((item) => (
@@ -176,7 +178,7 @@ const RouteResult = ({
             <View style={styles.thumbnailWrapper}>
               <Image source={item.image} style={styles.thumbnail} resizeMode="cover" />
               <View style={{...styles.freeBadge,backgroundColor: isHotel ? COLORS.blue : COLORS.orange}}>
-                <Text style={styles.freeBadgeText}>100% Free</Text>
+                <Text style={styles.freeBadgeText}>{t("100% Free")}</Text>
               </View>
             </View>
             <View style={styles.details}>
@@ -189,7 +191,7 @@ const RouteResult = ({
               <View style={styles.distanceRow}>
                 <Ionicons name="location-outline" size={13} color={isHotel ? COLORS.blue : COLORS.orange} />
                 <Text style={{...styles.distanceText,color: isHotel ? COLORS.blue : COLORS.orange}}>
-                  {item.distance} km from your route
+                  {item.distance} km {t("from your route")}
                 </Text>
               </View>
               <View style={styles.metaRow}>
@@ -199,7 +201,7 @@ const RouteResult = ({
                 {item.isAvailable && (
                   <View style={styles.availableRow}>
                     <View style={styles.availableDot} />
-                    <Text style={styles.availableText}>Open</Text>
+                    <Text style={styles.availableText}>{t("Open")}</Text>
                   </View>
                 )}
               </View>

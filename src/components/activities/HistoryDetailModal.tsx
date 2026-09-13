@@ -129,8 +129,8 @@ const HistoryDetailModal = ({
                 {config.icon}
               </View>
               <View style={styles.headerText}>
-                <Text style={styles.title}>{historyItem.title}</Text>
-                <Text style={styles.subtitle}>{historyItem.subtitle}</Text>
+                <Text style={styles.title}>{t(historyItem.title)}</Text>
+                <Text style={styles.subtitle}>{t(historyItem.subtitle)}</Text>
               </View>
               <Text style={styles.date}>{historyItem.date}</Text>
             </View>
@@ -143,11 +143,11 @@ const HistoryDetailModal = ({
             >
               <Ionicons name="checkmark-circle" size={15} color={historyItem.tagColor} />
               <Text style={[styles.statusText, { color: historyItem.tagColor }]}>
-                {historyItem.tagText}
+                {t(historyItem.tagText)}
               </Text>
             </View>
 
-            <Text style={styles.sectionTitle}>Details</Text>
+            <Text style={styles.sectionTitle}>{t('Details')}</Text>
             <View style={styles.detailsCard}>
               {Object.entries(historyItem.details).map(([label, value]) => (
                 <View key={label} style={styles.detailRow}>
@@ -164,7 +164,7 @@ const HistoryDetailModal = ({
               onPress={onClose}
               activeOpacity={0.85}
             >
-              <Text style={styles.closeButtonText}>Close</Text>
+              <Text style={styles.closeButtonText}>{t('Close')}</Text>
             </TouchableOpacity>
           </ScrollView>
         </View>

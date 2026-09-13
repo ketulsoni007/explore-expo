@@ -119,7 +119,7 @@ const HeaderRight = () => {
           onPress={onNotificationPress}
           hitSlop={8}
           style={styles.iconContainer}
-          accessibilityLabel="Notifications"
+          accessibilityLabel={t("notifications")}
           accessibilityRole="button"
         >
           <Ionicons name="notifications-outline" size={24} color="#000" />

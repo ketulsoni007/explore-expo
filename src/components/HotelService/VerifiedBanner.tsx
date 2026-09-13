@@ -13,7 +13,7 @@ const VerifiedBanner = () => {
       <View style={styles.textBox}>
         <Text style={styles.title}>{t('100% Verified Partners')}</Text>
         <Text style={styles.subtitle}>
-          All hotels are verified for safety, hygiene and quality standards.
+          {t('All hotels are verified for safety, hygiene and quality standards.')}
         </Text>
       </View>
       <View style={styles.checkBadge}>

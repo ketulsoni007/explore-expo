@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import { colors } from './colors';
 
 type Props = {
@@ -9,6 +9,7 @@ type Props = {
 };
 
 const ActionButtons = ({ onRequestAssistance, onCallSupport }: Props) => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <TouchableOpacity
@@ -22,13 +23,13 @@ const ActionButtons = ({ onRequestAssistance, onCallSupport }: Props) => {
           color={colors.white}
           style={styles.leftIcon}
         />
-        <Text style={styles.primaryButtonText}>Request Roadside Assistance</Text>
+        <Text style={styles.primaryButtonText}>{t('Request Roadside Assistance')}</Text>
         <Ionicons name="chevron-forward" size={18} color={colors.white} style={styles.rightIcon} />
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.supportLink} onPress={onCallSupport} activeOpacity={0.7}>
         <Ionicons name="call-outline" size={16} color={colors.primary} style={styles.leftIcon} />
-        <Text style={styles.supportText}>Need Help? Call Support 24x7</Text>
+        <Text style={styles.supportText}>{t('Need Help? Call Support 24x7')}</Text>
       </TouchableOpacity>
     </View>
   );

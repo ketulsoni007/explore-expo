@@ -104,12 +104,12 @@ const MyVehicleView = () => {
         <View style={styles.statCard}>
           <MaterialCommunityIcons name="car-side" size={20} color={colors.primary} />
           <Text style={styles.statLabel}>{t('Type')}</Text>
-          <Text style={styles.statValue}>{vehicle.type}</Text>
+          <Text style={styles.statValue}>{t(vehicle.type)}</Text>
         </View>
         <View style={styles.statCard}>
           <MaterialCommunityIcons name="gas-station-outline" size={20} color={colors.primary} />
           <Text style={styles.statLabel}>{t('Fuel')}</Text>
-          <Text style={styles.statValue}>{vehicle.fuelType}</Text>
+          <Text style={styles.statValue}>{t(vehicle.fuelType)}</Text>
         </View>
         <View style={styles.statCard}>
           <Ionicons name="calendar-outline" size={20} color={colors.primary} />
@@ -119,7 +119,7 @@ const MyVehicleView = () => {
         <View style={styles.statCard}>
           <MaterialCommunityIcons name="palette-outline" size={20} color={colors.primary} />
           <Text style={styles.statLabel}>{t('Color')}</Text>
-          <Text style={styles.statValue}>{vehicle.color}</Text>
+          <Text style={styles.statValue}>{t(vehicle.color)}</Text>
         </View>
       </View>
 
@@ -142,14 +142,14 @@ const MyVehicleView = () => {
               </View>
 
               <View style={styles.documentTextWrap}>
-                <Text style={styles.documentTitle}>{doc.title}</Text>
-                {doc.expiry && <Text style={styles.documentSubtitle}>{doc.expiry}</Text>}
+                <Text style={styles.documentTitle}>{t(doc.title)}</Text>
+                {doc.expiry && <Text style={styles.documentSubtitle}>{t(doc.expiry)}</Text>}
               </View>
 
               <View style={[styles.statusBadge, { backgroundColor: config.bg }]}>
                 <Ionicons name={config.icon as any} size={12} color={config.color} />
                 <Text style={[styles.statusBadgeText, { color: config.color }]}>
-                  {config.label}
+                  {t(config.label)}
                 </Text>
               </View>
             </TouchableOpacity>
@@ -161,8 +161,7 @@ const MyVehicleView = () => {
       <View style={styles.infoBanner}>
         <Ionicons name="information-circle-outline" size={20} color={colors.primary} />
         <Text style={styles.infoBannerText}>
-          Keep your documents updated to avoid service interruptions and stay eligible for
-          Miles Assist benefits.
+          {t('Keep your documents updated to avoid service interruptions and stay eligible for Miles Assist benefits.')}
         </Text>
       </View>
 

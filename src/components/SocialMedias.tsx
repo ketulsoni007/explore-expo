@@ -1,17 +1,18 @@
 import SocialReelCard, {
-  CARD_WIDTH,
-  SocialReelData,
+    CARD_WIDTH,
+    SocialReelData,
 } from "@/components/SocialReelCard";
+import { useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useEffect, useRef, useState } from "react";
 import {
-  FlatList,
-  NativeScrollEvent,
-  NativeSyntheticEvent,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
+    FlatList,
+    NativeScrollEvent,
+    NativeSyntheticEvent,
+    StyleSheet,
+    Text,
+    TouchableOpacity,
+    View,
 } from "react-native";
 
 const CARD_GAP = 12;
@@ -56,6 +57,7 @@ const SOCIAL_VIDEO_DATA: SocialReelData[] = [
 ];
 
 const SocialMedias = () => {
+  const { t } = useLanguage();
   const [activeIndex, setActiveIndex] = useState(0);
 
   const flatListRef = useRef<FlatList>(null);
@@ -101,11 +103,11 @@ const SocialMedias = () => {
       <View style={styles.header}>
         <View style={{ flex: 1 }}>
           <Text style={styles.headerTitle}>
-            Miles Assist on Social
+            {t("Miles Assist on Social")}
           </Text>
 
           <Text style={styles.headerSubtitle}>
-            Watch, follow & stay connected
+            {t("Watch, follow & stay connected")}
           </Text>
         </View>
 
@@ -115,7 +117,7 @@ const SocialMedias = () => {
           onPress={() => {}}
         >
           <Text style={styles.viewAllText}>
-            View All
+            {t("View All")}
           </Text>
 
           <Ionicons
@@ -138,7 +140,7 @@ const SocialMedias = () => {
         onScroll={handleScroll}
         scrollEventThrottle={16}
         renderItem={({ item }) => (
-          <SocialReelCard item={item} />
+          <SocialReelCard item={{ ...item, title: t(item.title) }} />
         )}
         ItemSeparatorComponent={() => (
           <View style={{ width: CARD_GAP }} />

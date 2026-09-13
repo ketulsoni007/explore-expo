@@ -1,16 +1,19 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const ServiceHero = () => {
+  const { t } = useLanguage();
+
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
         <MaterialCommunityIcons name="scale-balance" size={40} color={colors.primary} />
       </View>
-      <Text style={styles.title}>Lawyer</Text>
+        <Text style={styles.title}>{t('Lawyer')}</Text>
       <Text style={styles.subtitle}>
-        Connect with legal experts for guidance{'\n'}and support during legal emergencies.
+          {t('Connect with legal experts for guidance\\nand support during legal emergencies.')}
       </Text>
     </View>
   );

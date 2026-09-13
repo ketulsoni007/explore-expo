@@ -1,18 +1,19 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const CallPolicyBanner = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
         <Ionicons name="call-outline" size={20} color={colors.primary} />
       </View>
       <View style={styles.textWrap}>
-        <Text style={styles.title}>1 Free Call Included</Text>
+        <Text style={styles.title}>{t('1 Free Call Included')}</Text>
         <Text style={styles.subtitle}>
-          Your first call to a lawyer is free. After that, an active
-          subscription is required to continue calling.
+          {t('Your first call to a lawyer is free. After that, an active subscription is required to continue calling.')}
         </Text>
       </View>
     </View>

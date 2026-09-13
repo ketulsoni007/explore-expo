@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import { StyleSheet, Switch, Text, View } from "react-native";
@@ -18,6 +19,7 @@ type DriverAvailabilityProps = {
 }
 
 const DriverAvailability = ({fromSidebar = false} : DriverAvailabilityProps) => {
+  const { t } = useLanguage();
   const [isAvailable, setIsAvailable] = useState(true);
 
   return (
@@ -32,11 +34,11 @@ const DriverAvailability = ({fromSidebar = false} : DriverAvailabilityProps) => 
       </View>
 
       <View style={styles.textContainer}>
-        <Text style={styles.title}>Driving Availability</Text>
+        <Text style={styles.title}>{t('Driving Availability')}</Text>
         <Text style={styles.subtitle}>
           {isAvailable
-            ? "You are currently available to receive requests."
-            : "You are currently not receiving requests."}
+            ? t("You are currently available to receive requests.")
+            : t("You are currently not receiving requests.")}
         </Text>
       </View>
 
@@ -54,7 +56,7 @@ const DriverAvailability = ({fromSidebar = false} : DriverAvailabilityProps) => 
             { color: isAvailable ? COLORS.available : COLORS.unavailable },
           ]}
         >
-          {isAvailable ? "Available" : "Unavailable"}
+          {isAvailable ? t("Available") : t("Unavailable")}
         </Text>
       </View>
     </View>

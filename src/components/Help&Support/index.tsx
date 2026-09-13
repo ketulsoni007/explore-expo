@@ -169,8 +169,8 @@ const HelpAndSupportView = () => {
               <Ionicons name="help-circle-outline" size={20} color={colors.primary} />
             </View>
             <View style={styles.menuTextContent}>
-              <Text style={styles.menuTitle}>Frequently Asked Questions</Text>
-              <Text style={styles.menuSubtitle}>Find answers to common questions</Text>
+              <Text style={styles.menuTitle}>{t('Frequently Asked Questions')}</Text>
+              <Text style={styles.menuSubtitle}>{t('Find answers to common questions')}</Text>
             </View>
             <Ionicons name={faqOpen ? 'chevron-up' : 'chevron-down'} size={18} color={colors.textGray} />
           </TouchableOpacity>
@@ -192,13 +192,13 @@ const HelpAndSupportView = () => {
                       activeOpacity={0.7}
                       onPress={() => toggleQuestion(faq.id)}
                     >
-                      <Text style={styles.faqQuestionText}>{faq.question}</Text>
+                      <Text style={styles.faqQuestionText}>{t(faq.question)}</Text>
                       <Ionicons name={isOpen ? 'remove' : 'add'} size={18} color={colors.primary} />
                     </TouchableOpacity>
 
                     {isOpen && (
                       <View style={styles.faqAnswerWrap}>
-                        <Text style={styles.faqAnswerText}>{faq.answer}</Text>
+                        <Text style={styles.faqAnswerText}>{t(faq.answer)}</Text>
                       </View>
                     )}
                   </View>
@@ -214,16 +214,16 @@ const HelpAndSupportView = () => {
             <Ionicons name="shield-checkmark" size={20} color={colors.primary} />
           </View>
           <View style={styles.satisfactionTextWrap}>
-            <Text style={styles.satisfactionTitle}>Your Satisfaction, Our Priority</Text>
+            <Text style={styles.satisfactionTitle}>{t('Your Satisfaction, Our Priority')}</Text>
             <Text style={styles.satisfactionSubtitle}>
-              Our support team is available 24/7 to ensure you have a smooth experience.
+              {t('Our support team is available 24/7 to ensure you have a smooth experience.')}
             </Text>
           </View>
         </View>
 
         <TouchableOpacity style={styles.primaryButton} activeOpacity={0.85}>
           <MaterialCommunityIcons name="headset" size={18} color={colors.white} />
-          <Text style={styles.primaryButtonText}>Contact Support Now</Text>
+          <Text style={styles.primaryButtonText}>{t('Contact Support Now')}</Text>
           <Ionicons name="chevron-forward" size={18} color={colors.white} />
         </TouchableOpacity>
 

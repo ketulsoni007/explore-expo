@@ -23,7 +23,7 @@ const SubscriptionInfo = () => {
         <View>
           <Text style={styles.subTitle}>{t(user.status).toUpperCase()}</Text>
           <Text style={styles.userName}>{user.name}</Text>
-          <Text style={styles.memberId}>ID: {user.memberId}</Text>
+          <Text style={styles.memberId}>{t('ID:')} {user.memberId}</Text>
         </View>
         
         {/* Tier / Live Badge */}

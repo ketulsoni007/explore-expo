@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons, MaterialCommunityIcons } from '@expo/vector-icons';
 import { useState } from 'react';
 import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
@@ -45,6 +46,7 @@ const statusConfig: Record<DocStatus, { label: string; color: string; bg: string
 };
 
 const DocumentVerificationView = () => {
+  const { t } = useLanguage();
   const [docs, setDocs] = useState<DocSlot[]>(initialDocs);
 
   const verifiedCount = docs.filter((d) => d.status === 'verified').length;
@@ -69,10 +71,10 @@ const DocumentVerificationView = () => {
         </View>
         <View style={styles.progressTextWrap}>
           <Text style={styles.progressTitle}>
-            {verifiedCount} of {docs.length} Documents Verified
+            {verifiedCount} {t('of')} {docs.length} {t('Documents Verified')}
           </Text>
           <Text style={styles.progressSubtitle}>
-            Complete all uploads to unlock full Miles Assist benefits.
+            {t('Complete all uploads to unlock full Miles Assist benefits.')}
           </Text>
         </View>
       </View>
@@ -86,11 +88,11 @@ const DocumentVerificationView = () => {
       </View>
 
       {/* Identity documents */}
-      <Text style={styles.sectionTitle}>Identity Documents</Text>
+      <Text style={styles.sectionTitle}>{t('Identity Documents')}</Text>
       <DocumentCard doc={docs.find((d) => d.id === 'aadhar')!} onUpload={handleUpload} />
 
       {/* Driving license */}
-      <Text style={styles.sectionTitle}>Driving License</Text>
+      <Text style={styles.sectionTitle}>{t('Driving License')}</Text>
       <View style={styles.pairRow}>
         <DocumentCard
           doc={docs.find((d) => d.id === 'dl-front')!}
@@ -105,10 +107,10 @@ const DocumentVerificationView = () => {
       </View>
 
       {/* Vehicle documents */}
-      <Text style={styles.sectionTitle}>Vehicle Documents</Text>
+      <Text style={styles.sectionTitle}>{t('Vehicle Documents')}</Text>
       <DocumentCard doc={docs.find((d) => d.id === 'rc-book')!} onUpload={handleUpload} />
 
-      <Text style={styles.sectionTitle}>Vehicle Photos</Text>
+      <Text style={styles.sectionTitle}>{t('Vehicle Photos')}</Text>
       <View style={styles.pairRow}>
         <DocumentCard
           doc={docs.find((d) => d.id === 'car-front')!}
@@ -126,8 +128,7 @@ const DocumentVerificationView = () => {
       <View style={styles.infoBanner}>
         <Ionicons name="information-circle-outline" size={20} color={colors.primary} />
         <Text style={styles.infoBannerText}>
-          Make sure all documents are clear, well-lit, and show all four corners. Blurry or
-          cropped uploads may be rejected during review.
+          {t('Make sure all documents are clear, well-lit, and show all four corners. Blurry or cropped uploads may be rejected during review.')}
         </Text>
       </View>
 
@@ -146,21 +147,22 @@ type DocumentCardProps = {
 };
 
 const DocumentCard = ({ doc, onUpload, compact = false }: DocumentCardProps) => {
+  const { t } = useLanguage();
   const config = statusConfig[doc.status];
 
   return (
     <View style={[styles.docCard, compact && styles.docCardCompact]}>
       <View style={styles.docHeaderRow}>
         <Text style={styles.docTitle} numberOfLines={1}>
-          {doc.title}
+          {t(doc.title)}
         </Text>
         <View style={[styles.statusBadge, { backgroundColor: config.bg }]}>
           <Ionicons name={config.icon as any} size={11} color={config.color} />
-          <Text style={[styles.statusBadgeText, { color: config.color }]}>{config.label}</Text>
+          <Text style={[styles.statusBadgeText, { color: config.color }]}>{t(config.label)}</Text>
         </View>
       </View>
 
-      {!compact && <Text style={styles.docSubtitle}>{doc.subtitle}</Text>}
+      {!compact && <Text style={styles.docSubtitle}>{t(doc.subtitle)}</Text>}
 
       <TouchableOpacity
         style={[
@@ -176,7 +178,7 @@ const DocumentCard = ({ doc, onUpload, compact = false }: DocumentCardProps) => 
         ) : (
           <>
             <MaterialCommunityIcons name="camera-plus-outline" size={compact ? 22 : 26} color={colors.primary} />
-            <Text style={styles.uploadText}>{compact ? 'Upload' : 'Tap to upload document'}</Text>
+            <Text style={styles.uploadText}>{compact ? t('Upload') : t('Tap to upload document')}</Text>
           </>
         )}
       </TouchableOpacity>
@@ -188,7 +190,7 @@ const DocumentCard = ({ doc, onUpload, compact = false }: DocumentCardProps) => 
           onPress={() => onUpload(doc.id)}
         >
           <Ionicons name="refresh-outline" size={13} color={colors.primary} />
-          <Text style={styles.reuploadText}>Re-upload</Text>
+          <Text style={styles.reuploadText}>{t('Re-upload')}</Text>
         </TouchableOpacity>
       )}
     </View>

@@ -1,18 +1,19 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const VerifiedBanner = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
       <View style={styles.iconBox}>
         <Ionicons name="shield-checkmark" size={22} color={colors.primary} />
       </View>
       <View style={styles.textBox}>
-        <Text style={styles.title}>100% Verified & Confidential</Text>
+        <Text style={styles.title}>{t('100% Verified & Confidential')}</Text>
         <Text style={styles.subtitle}>
-          All our lawyers are verified professionals. Your conversations are private and secure.
+          {t('All our lawyers are verified professionals. Your conversations are private and secure.')}
         </Text>
       </View>
       <View style={styles.checkBadge}>

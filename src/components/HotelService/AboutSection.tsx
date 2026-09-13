@@ -8,9 +8,7 @@ const AboutSection = () => {
     <View style={styles.container}>
       <Text style={styles.heading}>{t('About This Service')}</Text>
       <Text style={styles.body}>
-        Miles Assist partners with verified hotels across India to provide eligible drivers with
-        comfortable stays at no cost. Whether it's a long trip, delay, or emergency, we've got you
-        covered.
+        {t("Miles Assist partners with verified hotels across India to provide eligible drivers with comfortable stays at no cost. Whether it's a long trip, delay, or emergency, we've got you covered.")}
       </Text>
     </View>
   );

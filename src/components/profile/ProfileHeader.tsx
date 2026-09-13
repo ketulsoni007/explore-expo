@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { Feather, Ionicons, MaterialCommunityIcons } from "@expo/vector-icons";
 import React from "react";
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
@@ -28,6 +29,7 @@ const InfoRow = ({ icon, text }: InfoRowProps) => (
 );
 
 const ProfileHeader = ({medalTier} : {medalTier: string}) => {
+  const { t } = useLanguage();
   const normalizedTier = medalTier.toLowerCase();
   const requiredImage = normalizedTier === 'bronze' ? require('@/assets/images/bronze-badge.png') : normalizedTier === 'silver' ? require('@/assets/images/silver-badge.png') : normalizedTier === 'gold' ? require('@/assets/images/gold-badge.png') : require('@/assets/images/free-badge.png');
   const tierBorderColor = normalizedTier === 'bronze'
@@ -60,7 +62,7 @@ const ProfileHeader = ({medalTier} : {medalTier: string}) => {
 
           <View style={styles.milesIdContainer}>
             <View style={styles.milesIdTextWrap}>
-              <Text style={styles.milesIdLabel}>Miles Assist ID</Text>
+              <Text style={styles.milesIdLabel}>{t('Miles Assist ID')}</Text>
               <Text style={styles.milesIdValue}>MA12345678</Text>
             </View>
             <TouchableOpacity style={styles.copyButton} activeOpacity={0.7}>
@@ -88,7 +90,7 @@ const ProfileHeader = ({medalTier} : {medalTier: string}) => {
                 color={COLORS.primary}
               />
               <Text style={styles.verifiedPartner}>
-                Verified Driver Partner
+                {t('Verified Driver Partner')}
               </Text>
             </View>
 
@@ -117,7 +119,7 @@ const ProfileHeader = ({medalTier} : {medalTier: string}) => {
 
             <View style={styles.verifiedBadge}>
               <Ionicons name="checkmark" size={14} color={COLORS.green} />
-              <Text style={styles.verifiedBadgeText}>Verified</Text>
+              <Text style={styles.verifiedBadgeText}>{t('Verified')}</Text>
             </View>
           </View>
 
@@ -131,10 +133,10 @@ const ProfileHeader = ({medalTier} : {medalTier: string}) => {
                     color={COLORS.green}
                   />
                 </View>
-                <Text style={styles.dutyLabel}>Duty Completed</Text>
+                <Text style={styles.dutyLabel}>{t('Duty Completed')}</Text>
               </View>
               <Text style={styles.dutyNumber}>20</Text>
-              <Text style={styles.dutySubLabel}>Total Duties</Text>
+              <Text style={styles.dutySubLabel}>{t('Total Duties')}</Text>
             </View>
           </View>
         </View>

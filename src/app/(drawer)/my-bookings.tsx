@@ -1,9 +1,12 @@
-import { View, Text } from "react-native";
+import { useLanguage } from "@/context/LanguageContext";
+import { Text, View } from "react-native";
 
 export default function MyBookingsScreen() {
+  const { t } = useLanguage();
+
   return (
     <View>
-      <Text>My Bookings</Text>
+      <Text>{t("myBookings")}</Text>
     </View>
   );
 }

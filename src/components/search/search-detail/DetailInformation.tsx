@@ -78,14 +78,14 @@ const DetailInformation = ({
       <View style={styles.sectionCard}>
         <View style={styles.sectionHeaderRow}>
           <Ionicons name="clipboard-outline" size={18} color={theme.primary} />
-          <Text style={styles.sectionHeaderText}>About This Place</Text>
+          <Text style={styles.sectionHeaderText}>{t('About This Place')}</Text>
         </View>
         <Text style={styles.aboutText} numberOfLines={isAboutExpanded ? undefined : 3}>
           {aboutText}
         </Text>
         <TouchableOpacity onPress={onToggleAbout} activeOpacity={0.7} style={styles.readMoreRow}>
           <Text style={[styles.readMoreText, { color: theme.primary }]}>
-            {isAboutExpanded ? "Read Less" : "Read More"}
+            {isAboutExpanded ? t("Read Less") : t("Read More")}
           </Text>
           <Ionicons
             name={isAboutExpanded ? "chevron-up" : "chevron-down"}
@@ -98,7 +98,7 @@ const DetailInformation = ({
       <View style={styles.sectionCard}>
         <View style={styles.sectionHeaderRow}>
           <Ionicons name="location-outline" size={18} color={theme.primary} />
-          <Text style={styles.sectionHeaderText}>Location & Direction</Text>
+          <Text style={styles.sectionHeaderText}>{t('Location & Direction')}</Text>
         </View>
         <TouchableOpacity style={styles.mapPreview} activeOpacity={0.85} onPress={onNavigate}>
           <View style={styles.mapDotStart} />
@@ -111,12 +111,12 @@ const DetailInformation = ({
 
         <View style={[styles.statsRow, { backgroundColor: theme.primaryBg }]}>
           <View style={styles.statBlock}>
-            <Text style={[styles.statLabel, { color: theme.primary }]}>Distance</Text>
-            <Text style={styles.statValue}>{distanceFromRoute} from your route</Text>
+            <Text style={[styles.statLabel, { color: theme.primary }]}>{t('Distance')}</Text>
+            <Text style={styles.statValue}>{distanceFromRoute} {t('from your route')}</Text>
           </View>
           <View style={styles.statDivider} />
           <View style={styles.statBlock}>
-            <Text style={[styles.statLabel, { color: theme.primary }]}>Estimated Time</Text>
+            <Text style={[styles.statLabel, { color: theme.primary }]}>{t('Estimated Time')}</Text>
             <Text style={styles.statValue}>{estimatedTime}</Text>
           </View>
         </View>
@@ -124,7 +124,7 @@ const DetailInformation = ({
         <View style={styles.verifiedNoteRow}>
           <Ionicons name="shield-checkmark-outline" size={15} color={theme.primary} />
           <Text style={styles.verifiedNoteText}>
-            Only verified partners  •  100% Free for eligible drivers
+            {t('Only verified partners  •  100% Free for eligible drivers')}
           </Text>
         </View>
 
@@ -135,7 +135,7 @@ const DetailInformation = ({
             onPress={onNavigate}
           >
             <Ionicons name="navigate-outline" size={17} color={theme.primary} />
-            <Text style={[styles.navigateButtonText, { color: theme.primary }]}>Navigate</Text>
+            <Text style={[styles.navigateButtonText, { color: theme.primary }]}>{t('Navigate')}</Text>
           </TouchableOpacity>
 
           <TouchableOpacity
@@ -144,7 +144,7 @@ const DetailInformation = ({
             onPress={onCall}
           >
             <Ionicons name="call" size={17} color="#FFFFFF" />
-            <Text style={styles.callButtonText}>Call</Text>
+            <Text style={styles.callButtonText}>{t('Call')}</Text>
           </TouchableOpacity>
         </View>
       </View>

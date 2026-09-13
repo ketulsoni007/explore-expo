@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
@@ -9,13 +10,14 @@ const ITEMS = [
 ];
 
 const WhoCanAvail = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>Who Can Avail</Text>
+      <Text style={styles.heading}>{t('Who Can Avail')}</Text>
       {ITEMS.map((item) => (
         <View key={item} style={styles.row}>
           <Ionicons name="checkmark-circle" size={18} color={colors.primary} style={styles.icon} />
-          <Text style={styles.text}>{item}</Text>
+          <Text style={styles.text}>{t(item)}</Text>
         </View>
       ))}
     </View>

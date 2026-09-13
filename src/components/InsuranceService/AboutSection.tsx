@@ -1,13 +1,14 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const AboutSection = () => {
+  const { t } = useLanguage();
   return (
     <View style={styles.container}>
-      <Text style={styles.heading}>About This Service</Text>
+      <Text style={styles.heading}>{t('About This Service')}</Text>
       <Text style={styles.body}>
-        Miles Assist offers insurance solutions designed for drivers with affordable premiums and
-        easy claim support. Stay protected on every trip with our trusted partners.
+        {t('Miles Assist offers insurance solutions designed for drivers with affordable premiums and easy claim support. Stay protected on every trip with our trusted partners.')}
       </Text>
     </View>
   );

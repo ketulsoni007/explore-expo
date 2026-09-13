@@ -1,16 +1,19 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const ServiceHero = () => {
+  const { t } = useLanguage();
+
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
         <Ionicons name="shield-checkmark" size={40} color={colors.primary} />
       </View>
-      <Text style={styles.title}>Insurance</Text>
+        <Text style={styles.title}>{t('Insurance')}</Text>
       <Text style={styles.subtitle}>
-        Get affordable insurance solutions{'\n'}and claim support for eligible drivers.
+          {t('Get affordable insurance solutions\\nand claim support for eligible drivers.')}
       </Text>
     </View>
   );

@@ -1,20 +1,22 @@
+import { useLanguage } from '@/context/LanguageContext';
 import {
-  Ionicons,
-  MaterialCommunityIcons,
+    Ionicons,
+    MaterialCommunityIcons,
 } from '@expo/vector-icons';
 import { useEffect } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
 import Animated, {
-  Easing,
-  useAnimatedStyle,
-  useSharedValue,
-  withRepeat,
-  withSequence,
-  withTiming,
+    Easing,
+    useAnimatedStyle,
+    useSharedValue,
+    withRepeat,
+    withSequence,
+    withTiming,
 } from 'react-native-reanimated';
 import { supportStyles as styles } from './supportStyles';
 
 export default function SupportActionFooter() {
+  const { t } = useLanguage();
   
   const shake = useSharedValue(0);
 
@@ -49,7 +51,7 @@ export default function SupportActionFooter() {
         activeOpacity={0.85}
       >
         <MaterialCommunityIcons name="headset" size={20} color="#FFFFFF" />
-        <Text style={styles.primaryButtonText}>Contact Support Now</Text>
+        <Text style={styles.primaryButtonText}>{t('Contact Support Now')}</Text>
         <Ionicons name="chevron-forward" size={18} color="#FFFFFF" />
       </TouchableOpacity>
 
@@ -61,7 +63,7 @@ export default function SupportActionFooter() {
           <Ionicons name="call-outline" size={18} color="#0052FF" />
         </Animated.View>
         <Text style={styles.secondaryButtonText}>
-          Need Help? Call Support: 24x7
+          {t('Need Help? Call Support: 24x7')}
         </Text>
       </TouchableOpacity>
     </View>

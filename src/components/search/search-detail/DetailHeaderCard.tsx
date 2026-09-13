@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { StyleSheet, Text, View } from "react-native";
 
@@ -46,6 +47,7 @@ const DetailHeaderCard = ({
     address = isHotel ? "NH 48, Anand, Gujarat" : "North Highway, Nadiad, Gujarat",
     distanceFromRoute = isHotel ? "5.1 km" : "2.4 km",
 }: DetailHeaderCardProps) => {
+    const { t } = useLanguage();
     const theme = isHotel ? HOTEL_THEME : RESTAURANT_THEME;
     const features = isHotel ? HOTEL_FEATURES : RESTAURANT_FEATURES;
 
@@ -57,7 +59,7 @@ const DetailHeaderCard = ({
                 {isOpen && (
                     <View style={styles.openRow}>
                         <View style={styles.openDot} />
-                        <Text style={styles.openText}>Open</Text>
+                        <Text style={styles.openText}>{t('Open')}</Text>
                     </View>
                 )}
             </View>
@@ -65,7 +67,7 @@ const DetailHeaderCard = ({
              <View style={[styles.driverBadge, { backgroundColor: isHotel ? theme.primaryBg : RESTAURANT_THEME.primaryBg }]}>
                 <Ionicons name="people" size={14} color={theme.primary} />
                 <Text style={[styles.driverBadgeText, { color: theme.primary }]}>
-                    100+ Miles assist drivers visited here
+                    {t('100+ Miles assist drivers visited here')}
                 </Text>
             </View>
 
@@ -73,14 +75,14 @@ const DetailHeaderCard = ({
             <View style={styles.metaRow}>
                 <Ionicons name="star" size={16} color={theme.primary} />
                 <Text style={styles.ratingText}>{rating.toFixed(1)}</Text>
-                <Text style={styles.reviewText}>({reviewCount} reviews)</Text>
+                <Text style={styles.reviewText}>({reviewCount} {t('reviews')})</Text>
 
                 <View style={styles.metaDivider} />
 
                 {isVerified && (
                     <View style={styles.verifiedRow}>
                         <Ionicons name="shield-checkmark" size={16} color={theme.primary} />
-                        <Text style={[styles.verifiedText, { color: theme.primary }]}>Verified Partner</Text>
+                        <Text style={[styles.verifiedText, { color: theme.primary }]}>{t('Verified Partner')}</Text>
                     </View>
                 )}
             </View>
@@ -93,7 +95,7 @@ const DetailHeaderCard = ({
                 <Text style={styles.addressText} numberOfLines={1}>
                     {address}
                 </Text>
-                <Text style={styles.distanceText}>{distanceFromRoute} from your route</Text>
+                <Text style={styles.distanceText}>{distanceFromRoute} {t('from your route')}</Text>
             </View>
 
             <View style={styles.hairline} />
@@ -105,8 +107,8 @@ const DetailHeaderCard = ({
                         <View style={[styles.featureIconCircle, { backgroundColor: theme.primaryBg }]}>
                             <Ionicons name={feature.icon} size={20} color={theme.primary} />
                         </View>
-                        <Text style={styles.featureTitle}>{feature.title}</Text>
-                        <Text style={styles.featureSubtitle}>{feature.subtitle}</Text>
+                        <Text style={styles.featureTitle}>{t(feature.title)}</Text>
+                        <Text style={styles.featureSubtitle}>{t(feature.subtitle)}</Text>
                     </View>
                 ))}
             </View>

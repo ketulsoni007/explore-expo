@@ -130,7 +130,7 @@ const DrawerContent = (props: any) => {
         <View style={styles.iconPlain}>
           <Ionicons name={item.icon} size={22} color={item.iconColor} />
         </View>
-        <Text style={styles.menuText}>Tier</Text>
+        <Text style={styles.menuText}>{t('Tier')}</Text>
         <Ionicons
           name={isTierOpen ? "chevron-up" : "chevron-down"}
           size={18}
@@ -184,7 +184,7 @@ const DrawerContent = (props: any) => {
             <Text style={styles.profileId}>MA12345678</Text>
             <View style={styles.verifiedRow}>
               <Ionicons name="shield-checkmark" size={13} color={COLORS.green} />
-              <Text style={styles.verifiedText}>Verified Driver Partner</Text>
+              <Text style={styles.verifiedText}>{t('Verified Driver Partner')}</Text>
             </View>
           </View>
           <Ionicons name="chevron-forward" size={18} color="#C4C7CD" />
@@ -205,15 +205,15 @@ const DrawerContent = (props: any) => {
         <View style={styles.infoBanner}>
           <Ionicons name="shield-checkmark" size={28} color={COLORS.navy} />
           <View style={{ flex: 1, marginLeft: 12 }}>
-            <Text style={styles.infoBannerTitle}>We're Here to Help!</Text>
+            <Text style={styles.infoBannerTitle}>{t("We're Here to Help!")}</Text>
             <Text style={styles.infoBannerSubtitle}>
-              One app. Many services. Always by your side.
+              {t('One app. Many services. Always by your side.')}
             </Text>
           </View>
         </View>
         <TouchableOpacity style={styles.logoutButton} activeOpacity={0.7}>
           <Ionicons name="log-out-outline" size={20} color={COLORS.red} />
-          <Text style={styles.logoutText}>Logout</Text>
+          <Text style={styles.logoutText}>{t('Logout')}</Text>
         </TouchableOpacity>
         <Text style={styles.versionText}>Version {appVersion}</Text>
       </View>

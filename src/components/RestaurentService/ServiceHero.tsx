@@ -12,7 +12,7 @@ const ServiceHero = () => {
       </View>
       <Text style={styles.title}>{t('Restaurants')}</Text>
       <Text style={styles.subtitle}>
-        Find partner restaurants offering free meals{'\n'}for eligible Miles Assist drivers.
+          {t('Find partner restaurants offering free meals\\nfor eligible Miles Assist drivers.')}
       </Text>
     </View>
   );

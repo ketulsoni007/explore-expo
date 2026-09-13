@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
@@ -38,6 +39,7 @@ type ImageGalleryProps = {
 };
 
 export const ImageGallery = ({ isHotel, isFree = true }: ImageGalleryProps) => {
+    const { t } = useLanguage();
     const { width: screenWidth, height: screenHeight } = useWindowDimensions();
 
     const bannerWidth = screenWidth - 32;
@@ -95,7 +97,7 @@ export const ImageGallery = ({ isHotel, isFree = true }: ImageGalleryProps) => {
                 {/* 100% Free badge — top-left */}
                 {isFree && (
                     <View style={{ ...styles.freeBadge, backgroundColor: isHotel ? COLORS.blue : COLORS.orange }}>
-                        <Text style={styles.freeBadgeText}>100% FREE</Text>
+                        <Text style={styles.freeBadgeText}>{t('100% FREE')}</Text>
                     </View>
                 )}
 

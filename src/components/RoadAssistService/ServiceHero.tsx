@@ -1,17 +1,19 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useLanguage } from '@/context/LanguageContext';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 const ServiceHero = () => {
+  const { t } = useLanguage();
+
   return (
     <View style={styles.container}>
       <View style={styles.iconCircle}>
         <MaterialCommunityIcons name="tow-truck" size={42} color={colors.primary} />
       </View>
-      <Text style={styles.title}>Roadside Assistance SOS</Text>
+      <Text style={styles.title}>{t('Roadside Assistance SOS')}</Text>
       <Text style={styles.subtitle}>
-        24x7 help for breakdown, towing, tyre change,{'\n'}battery jump-start & more.
+        {t('24x7 help for breakdown, towing, tyre change,\\nbattery jump-start & more.')}
       </Text>
     </View>
   );

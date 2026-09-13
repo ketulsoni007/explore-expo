@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useCallback, useMemo, useState } from "react";
 import {
@@ -178,6 +179,7 @@ function buildSections(data: NotificationItem[]) {
 
 
 const NotificationView = () => {
+    const { t } = useLanguage();
     const [notifications, setNotifications] = useState<NotificationItem[]>(BASE_DATA);
     const [refreshing, setRefreshing] = useState(false);
 
@@ -258,12 +260,12 @@ const NotificationView = () => {
                                     ]}
                                     numberOfLines={1}
                                 >
-                                    {item.title}
+                                    {t(item.title)}
                                 </Text>
                                 <Text style={styles.time}>{item.time}</Text>
                             </View>
                             <Text style={styles.message} numberOfLines={2}>
-                                {item.message}
+                                {t(item.message)}
                             </Text>
                         </View>
                     </Pressable>
@@ -284,10 +286,10 @@ const NotificationView = () => {
                     ListFooterComponent={<View style={{paddingBottom:40}} />}
                     renderSectionHeader={({ section: { title } }) => (
                         <View style={styles.sectionHeaderRow}>
-                            <Text style={styles.sectionHeader}>{title}</Text>
-                            {title === "Today" && unreadCount > 0 && (
+                            <Text style={styles.sectionHeader}>{t(title)}</Text>
+                                {title === "Today" && unreadCount > 0 && (
                                 <Pressable onPress={markAllRead} hitSlop={8}>
-                                    <Text style={styles.markAllText}>Mark all read</Text>
+                                    <Text style={styles.markAllText}>{t('Mark all read')}</Text>
                                 </Pressable>
                             )}
                         </View>
@@ -317,8 +319,10 @@ const EmptyState = ({
 }: {
     refreshing: boolean;
     onRefresh: () => void;
-}) => (
-    <SectionList
+}) => {
+    const { t } = useLanguage();
+
+    return <SectionList
         sections={[]}
         keyExtractor={() => "empty"}
         renderItem={() => null}
@@ -336,14 +340,14 @@ const EmptyState = ({
                 <View style={styles.emptyIconCircle}>
                     <Ionicons name="notifications-off-outline" size={32} color="#9CA3AF" />
                 </View>
-                <Text style={styles.emptyTitle}>No notifications yet</Text>
+                <Text style={styles.emptyTitle}>{t('No notifications yet')}</Text>
                 <Text style={styles.emptySubtitle}>
-                    Pull down to refresh, or check back later.
+                    {t('Pull down to refresh, or check back later.')}
                 </Text>
             </View>
         }
-    />
-);
+    />;
+};
 
 export default NotificationView;
 

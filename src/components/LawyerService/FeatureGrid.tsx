@@ -1,6 +1,6 @@
-import React from 'react';
-import { View, Text, StyleSheet } from 'react-native';
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
+import { StyleSheet, Text, View } from 'react-native';
 import { colors } from './colors';
 
 type Feature = {
@@ -16,6 +16,8 @@ const FEATURES: Feature[] = [
 ];
 
 const FeatureGrid = () => {
+  const { t } = useLanguage();
+
   return (
     <View style={styles.card}>
       {FEATURES.map((feature) => (
@@ -23,7 +25,7 @@ const FeatureGrid = () => {
           <View style={styles.iconCircle}>
             <Ionicons name={feature.icon} size={22} color={colors.primary} />
           </View>
-          <Text style={styles.label}>{feature.label}</Text>
+          <Text style={styles.label}>{t(feature.label)}</Text>
         </View>
       ))}
     </View>
