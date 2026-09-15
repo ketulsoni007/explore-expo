@@ -32,30 +32,30 @@ const vehicle = {
 const documents = [
   {
     id: 'rc',
-    title: 'Registration Certificate (RC)',
+    titleKey: 'vehicleRegistrationCertificate',
     status: 'verified',
-    expiry: null,
+    expiryKey: null,
     icon: 'file-document-outline',
   },
   {
     id: 'insurance',
-    title: 'Vehicle Insurance',
+    titleKey: 'vehicleInsurance',
     status: 'expiring',
-    expiry: 'Expires on 28 Sep 2026',
+    expiryKey: 'vehicleInsuranceExpiry',
     icon: 'shield-check-outline',
   },
   {
     id: 'puc',
-    title: 'Pollution Certificate (PUC)',
+    titleKey: 'vehiclePollutionCertificate',
     status: 'verified',
-    expiry: 'Valid till 12 Jan 2027',
+    expiryKey: 'vehiclePollutionCertificateExpiry',
     icon: 'leaf',
   },
   {
     id: 'permit',
-    title: 'Commercial Permit',
+    titleKey: 'vehicleCommercialPermit',
     status: 'missing',
-    expiry: null,
+    expiryKey: null,
     icon: 'card-account-details-outline',
   },
 ];
@@ -142,8 +142,8 @@ const MyVehicleView = () => {
               </View>
 
               <View style={styles.documentTextWrap}>
-                <Text style={styles.documentTitle}>{t(doc.title)}</Text>
-                {doc.expiry && <Text style={styles.documentSubtitle}>{t(doc.expiry)}</Text>}
+                <Text style={styles.documentTitle}>{t(doc.titleKey)}</Text>
+                {doc.expiryKey && <Text style={styles.documentSubtitle}>{t(doc.expiryKey)}</Text>}
               </View>
 
               <View style={[styles.statusBadge, { backgroundColor: config.bg }]}>

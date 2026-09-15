@@ -16,7 +16,7 @@ const WhoCanAvail = () => {
       {ITEMS.map((item) => (
         <View key={item} style={styles.row}>
           <View style={styles.dot} />
-          <Text style={styles.text}>{item}</Text>
+          <Text style={styles.text}>{t(item)}</Text>
         </View>
       ))}
     </View>

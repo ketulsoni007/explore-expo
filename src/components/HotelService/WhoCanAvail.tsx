@@ -17,7 +17,7 @@ const WhoCanAvail = () => {
       {ITEMS.map((item) => (
         <View key={item} style={styles.row}>
           <Ionicons name="checkmark-circle" size={18} color={colors.primary} style={styles.icon} />
-          <Text style={styles.text}>{item}</Text>
+          <Text style={styles.text}>{t(item)}</Text>
         </View>
       ))}
     </View>

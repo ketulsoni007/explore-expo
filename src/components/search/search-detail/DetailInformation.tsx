@@ -81,7 +81,7 @@ const DetailInformation = ({
           <Text style={styles.sectionHeaderText}>{t('About This Place')}</Text>
         </View>
         <Text style={styles.aboutText} numberOfLines={isAboutExpanded ? undefined : 3}>
-          {aboutText}
+          {t(aboutText)}
         </Text>
         <TouchableOpacity onPress={onToggleAbout} activeOpacity={0.7} style={styles.readMoreRow}>
           <Text style={[styles.readMoreText, { color: theme.primary }]}>
@@ -117,7 +117,7 @@ const DetailInformation = ({
           <View style={styles.statDivider} />
           <View style={styles.statBlock}>
             <Text style={[styles.statLabel, { color: theme.primary }]}>{t('Estimated Time')}</Text>
-            <Text style={styles.statValue}>{estimatedTime}</Text>
+            <Text style={styles.statValue}>{t(estimatedTime)}</Text>
           </View>
         </View>
 
@@ -205,6 +205,10 @@ const styles = StyleSheet.create({
   perkCard: {
     width: 120,
     alignItems: 'center',
+    borderRadius: 10,
+    paddingVertical: 8,
+    paddingHorizontal: 8,
+    marginTop:12
   },
 
   perkTitle: {

@@ -13,7 +13,7 @@ const HygieneBanner = () => {
       <View style={styles.textBox}>
         <Text style={styles.title}>{t('100% Hygienic & Safe')}</Text>
         <Text style={styles.subtitle}>
-          All partner restaurants follow strict hygiene and quality standards.
+          {t('All partner restaurants follow strict hygiene and quality standards.')}
         </Text>
       </View>
       <View style={styles.checkBadge}>

@@ -1,11 +1,14 @@
-import { View, Text, TouchableOpacity, StyleSheet, Image, ScrollView } from 'react-native'
-import React from 'react'
+import { useLanguage } from '@/context/LanguageContext';
+import React from 'react';
+import { Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 type SideBarProps = {
   setSidebarOpen: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const SideBar = ({ setSidebarOpen }: SideBarProps) => {
+  const { t } = useLanguage();
+
   return (
     <View style={styles.overlay}>
       <View style={styles.sidebar}>
@@ -25,7 +28,7 @@ const SideBar = ({ setSidebarOpen }: SideBarProps) => {
               </TouchableOpacity>
             </View>
             <Text style={styles.logoTitle}>Miles Assist</Text>
-            <Text style={styles.logoSubtitle}>Safer Journey. Stronger Drivers.</Text>
+            <Text style={styles.logoSubtitle}>{t('Safer Journey. Stronger Drivers.')}</Text>
           </View>
           <View style={styles.mainWrapper}>
             <View style={styles.profileCard}>
@@ -36,85 +39,85 @@ const SideBar = ({ setSidebarOpen }: SideBarProps) => {
                 <Text style={styles.profileName}>Jay Dave</Text>
                 <Text style={styles.profileId}>MA12345678</Text>
                 <View style={styles.verifiedBadge}>
-                  <Text style={styles.verifiedText}>✔ Verified Driver Partner</Text>
+                  <Text style={styles.verifiedText}>✔ {t('Verified Driver Partner')}</Text>
                 </View>
               </View>
             </View>
             <View style={styles.menuSection}>
               <TouchableOpacity style={[styles.menuItem, styles.activeMenuItem]}>
                 <Text style={styles.menuIcon}>🏠</Text>
-                <Text style={[styles.menuText, styles.activeMenuText]}>Home</Text>
+                <Text style={[styles.menuText, styles.activeMenuText]}>{t('home')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>🍔</Text>
-                <Text style={styles.menuText}>Free Food</Text>
+                <Text style={styles.menuText}>{t('freeFood')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>🏨</Text>
-                <Text style={styles.menuText}>Free Stay</Text>
+                <Text style={styles.menuText}>{t('freeStay')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>⚙️</Text>
-                <Text style={styles.menuText}>Services</Text>
+                <Text style={styles.menuText}>{t('services')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>🎯</Text>
-                <Text style={styles.menuText}>Activities</Text>
+                <Text style={styles.menuText}>{t('activities')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={[styles.menuItem, styles.sosMenuItem]}>
                 <Text style={styles.menuIcon}>🆘</Text>
-                <Text style={[styles.menuText, styles.sosMenuText]}>SOS / Emergency</Text>
+                <Text style={[styles.menuText, styles.sosMenuText]}>{t('emergency')}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.menuSection}>
-              <Text style={styles.sectionHeader}>My Bookings</Text>
+              <Text style={styles.sectionHeader}>{t('myBookings')}</Text>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>📋</Text>
-                <Text style={styles.menuText}>My Bookings</Text>
+                <Text style={styles.menuText}>{t('myBookings')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>🚗</Text>
-                <Text style={styles.menuText}>My Vehicle</Text>
+                <Text style={styles.menuText}>{t('myVehicle')}</Text>
               </TouchableOpacity>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>⭐</Text>
-                <Text style={styles.menuText}>Reward Points</Text>
+                <Text style={styles.menuText}>{t('rewardPoints')}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.menuSection}>
-              <Text style={styles.sectionHeader}>Help & Support</Text>
+              <Text style={styles.sectionHeader}>{t('helpSupport')}</Text>
               <TouchableOpacity style={styles.menuItem}>
                 <Text style={styles.menuIcon}>ℹ️</Text>
-                <Text style={styles.menuText}>About Miles Assist</Text>
+                <Text style={styles.menuText}>{t('About Miles Assist')}</Text>
               </TouchableOpacity>
             </View>
             <View style={styles.bannerContainer}>
-              <Text style={styles.bannerTitle}>✨ We're Here for You!</Text>
-              <Text style={styles.bannerSubtitle}>One app. Many services. Always by your side.</Text>
+              <Text style={styles.bannerTitle}>✨ {t("We're Here for You!")}</Text>
+              <Text style={styles.bannerSubtitle}>{t('One app. Many services. Always by your side.')}</Text>
             </View>
             <View style={styles.bottomSection}>
               <TouchableOpacity style={styles.bottomMenuItem}>
                 <Text style={styles.bottomMenuIcon}>👤</Text>
-                <Text style={styles.bottomMenuText}>Invite a Driver</Text>
+                <Text style={styles.bottomMenuText}>{t('Invite a Driver')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.bottomMenuItem}>
                 <Text style={styles.bottomMenuIcon}>📤</Text>
-                <Text style={styles.bottomMenuText}>Share App</Text>
+                <Text style={styles.bottomMenuText}>{t('Share App')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={styles.bottomMenuItem}>
                 <Text style={styles.bottomMenuIcon}>⚙️</Text>
-                <Text style={styles.bottomMenuText}>Settings</Text>
+                <Text style={styles.bottomMenuText}>{t('settings')}</Text>
               </TouchableOpacity>
 
               <TouchableOpacity style={[styles.bottomMenuItem, styles.logoutItem]}>
                 <Text style={styles.bottomMenuIcon}>🚪</Text>
-                <Text style={[styles.bottomMenuText, styles.logoutText]}>Logout</Text>
+                <Text style={[styles.bottomMenuText, styles.logoutText]}>{t('Logout')}</Text>
               </TouchableOpacity>
             </View>
           </View>
-          <Text style={styles.versionText}>Version 1.0.0</Text>
+          <Text style={styles.versionText}>{t('Version')} 1.0.0</Text>
         </ScrollView>
       </View>
     </View>

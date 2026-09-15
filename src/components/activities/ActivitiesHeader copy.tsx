@@ -1,7 +1,9 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
 const ActivitiesHeader = () => {
+  const { t } = useLanguage();
   const currentDuties = 12;
   const totalDuties = 30;
   const daysLeft = 45;
@@ -12,15 +14,15 @@ const ActivitiesHeader = () => {
       {/* Title & Badge Row */}
       <View style={styles.headerRow}>
         <View>
-          <Text style={styles.mainTitle}>Duty Journey</Text>
+          <Text style={styles.mainTitle}>{t('Duty Journey')}</Text>
           <Text style={styles.subTitle}>
-            Your <Text style={styles.highlightText}>90 Days</Text> Progress
+            {t('Your')} <Text style={styles.highlightText}>{t('90 Days')}</Text> {t('Progress')}
           </Text>
         </View>
 
         <View style={styles.daysBadge}>
           <Ionicons name="calendar-outline" size={14} color="#1D4ED8" />
-          <Text style={styles.daysText}>{daysLeft} Days Left</Text>
+          <Text style={styles.daysText}>{daysLeft} {t('Days Left')}</Text>
         </View>
       </View>
 
@@ -38,7 +40,7 @@ const ActivitiesHeader = () => {
             <Text style={styles.progressCounter}>
               <Text style={styles.completedCount}>{currentDuties}</Text> / {totalDuties}
             </Text>
-            <Text style={styles.counterLabel}>Duties Completed</Text>
+            <Text style={styles.counterLabel}>{t('Duties Completed')}</Text>
           </View>
 
           <View style={styles.progressBarWrapper}>
@@ -54,7 +56,7 @@ const ActivitiesHeader = () => {
         <View style={styles.goalFooter}>
           <Ionicons name="flag" size={14} color="#1D4ED8" style={{ marginRight: 6 }} />
           <Text style={styles.goalText}>
-            Milestone: <Text style={{ fontWeight: '700' }}>{totalDuties} Duties Goal</Text>
+            {t('Milestone')}: <Text style={{ fontWeight: '700' }}>{totalDuties} {t('Duties Goal')}</Text>
           </Text>
         </View>
       </View>

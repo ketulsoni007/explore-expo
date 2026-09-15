@@ -114,7 +114,7 @@ const ProfileHeader = ({medalTier} : {medalTier: string}) => {
                   color={COLORS.textSecondary}
                 />
               }
-              text="Ahmedabad, Gujarat"
+              text={t('Ahmedabad, Gujarat')}
             />
 
             <View style={styles.verifiedBadge}>

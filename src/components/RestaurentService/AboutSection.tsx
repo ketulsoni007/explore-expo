@@ -8,9 +8,7 @@ const AboutSection = () => {
     <View style={styles.container}>
       <Text style={styles.heading}>{t('About This Service')}</Text>
       <Text style={styles.body}>
-        Miles Assist partners with trusted restaurants and dhabas to provide free meals to
-        eligible drivers on the road. Healthy, hygienic and driver-friendly food options to keep
-        you fueled and going.
+        {t('Miles Assist partners with trusted restaurants and dhabas to provide free meals to eligible drivers on the road. Healthy, hygienic and driver-friendly food options to keep you fueled and going.')}
       </Text>
     </View>
   );

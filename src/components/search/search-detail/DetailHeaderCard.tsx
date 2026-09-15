@@ -265,7 +265,7 @@ const styles = StyleSheet.create({
         paddingHorizontal: 10,
         paddingVertical: 4,
         marginTop: 10,
-        width:'80%'
+        width:'87%'
     },
 
     driverBadgeText: {

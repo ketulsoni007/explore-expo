@@ -1,3 +1,4 @@
+import { useLanguage } from "@/context/LanguageContext";
 import { Ionicons } from "@expo/vector-icons";
 import { useState } from "react";
 import {
@@ -33,6 +34,7 @@ const HowToUseVideo = ({
   youTubeVideoLink = "https://youtu.be/hbfmaVD0rI0?si=WICWY6-Evq-JmSrH",
   title = "How to use"
 }: Props) => {
+  const { t } = useLanguage();
   const [playing, setPlaying] = useState(false);
   const [loading, setLoading] = useState(false);
 
@@ -46,7 +48,7 @@ const HowToUseVideo = ({
 
   return (
     <View style={styles.container}>
-      <Text style={styles.sectionTitle}>{title}</Text>
+      <Text style={styles.sectionTitle}>{t(title)}</Text>
 
       <View style={styles.playerWrap}>
         {playing ? (

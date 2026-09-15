@@ -4,13 +4,13 @@ import Constants from "expo-constants";
 import { router } from "expo-router";
 import { useState } from "react";
 import {
-    Image,
-    ScrollView,
-    StyleSheet,
-    Text,
-    TouchableOpacity,
-    useWindowDimensions,
-    View,
+  Image,
+  ScrollView,
+  StyleSheet,
+  Text,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
 } from "react-native";
 
 const COLORS = {
@@ -148,7 +148,7 @@ const DrawerContent = (props: any) => {
               onPress={() => onTierPress(tier.key)}
             >
               <View style={[styles.tierDot, { backgroundColor: tier.color }]} />
-              <Text style={styles.tierLabel}>{tier.label}</Text>
+              <Text style={styles.tierLabel}>{t(tier.label)}</Text>
             </TouchableOpacity>
           ))}
         </View>
@@ -215,7 +215,7 @@ const DrawerContent = (props: any) => {
           <Ionicons name="log-out-outline" size={20} color={COLORS.red} />
           <Text style={styles.logoutText}>{t('Logout')}</Text>
         </TouchableOpacity>
-        <Text style={styles.versionText}>Version {appVersion}</Text>
+        <Text style={styles.versionText}>{t('Version')} {appVersion}</Text>
       </View>
     </ScrollView>
   );

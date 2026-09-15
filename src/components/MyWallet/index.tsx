@@ -186,8 +186,8 @@ const WalletView = () => {
             </View>
 
             <View style={styles.transactionTextWrap}>
-              <Text style={styles.transactionTitle}>{txn.title}</Text>
-              <Text style={styles.transactionSubtitle}>{txn.subtitle}</Text>
+              <Text style={styles.transactionTitle}>{t(txn.title)}</Text>
+              <Text style={styles.transactionSubtitle}>{t(txn.subtitle)}</Text>
             </View>
 
             <View style={styles.transactionRight}>
@@ -199,7 +199,7 @@ const WalletView = () => {
               >
                 {txn.type === 'credit' ? '+' : '-'}₹{Math.abs(txn.amount)}
               </Text>
-              <Text style={styles.transactionDate}>{txn.date}</Text>
+              <Text style={styles.transactionDate}>{t(txn.date)}</Text>
             </View>
           </View>
         ))}

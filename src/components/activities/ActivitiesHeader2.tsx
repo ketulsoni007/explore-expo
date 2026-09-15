@@ -1,3 +1,4 @@
+import { useLanguage } from '@/context/LanguageContext';
 import { Ionicons } from '@expo/vector-icons';
 import { Image, StyleSheet, Text, View } from 'react-native';
 
@@ -17,6 +18,7 @@ const MILESTONES: DutyMilestone[] = [
 ];
 
 const ActivitiesHeader = () => {
+  const { t } = useLanguage();
   const currentDuties = 12;
   const totalDuties = 60;
 
@@ -25,11 +27,11 @@ const ActivitiesHeader = () => {
       <View style={styles.bannerRow}>
         <View style={styles.textContainer}>
           <Text style={styles.headingText}>
-            Every Help,{"\n"}
-            <Text style={styles.highlightText}>Every Mile Matters!</Text>
+            {t('Every Help')},{"\n"}
+            <Text style={styles.highlightText}>{t('Every Mile Matters!')}</Text>
           </Text>
           <Text style={styles.subHeadingText}>
-            We're here for you at every step of your journey.
+            {t("We're here for you at every step of your journey.")}
           </Text>
         </View>
         <Image
@@ -41,14 +43,14 @@ const ActivitiesHeader = () => {
       <View style={styles.divider} />
       <View style={styles.progressHeader}>
         <View>
-          <Text style={styles.progressTitle}>Duty Progress</Text>
+          <Text style={styles.progressTitle}>{t('Duty Progress')}</Text>
           <Text style={styles.progressSubtitle}>
             <Text style={styles.completedCount}>{currentDuties}</Text>
-            <Text style={styles.totalCount}> / {totalDuties} Duties Completed</Text>
+            <Text style={styles.totalCount}> / {totalDuties} {t('Duties Completed')}</Text>
           </Text>
         </View>
         <View style={styles.daysBadge}>
-          <Text style={styles.daysText}>180 Days</Text>
+          <Text style={styles.daysText}>180 {t('Days')}</Text>
           <Ionicons name="calendar-outline" size={14} color="#0052CC" style={{ marginLeft: 4 }} />
         </View>
       </View>
@@ -56,7 +58,7 @@ const ActivitiesHeader = () => {
       <View style={styles.goalFooter}>
         <Ionicons name="flag" size={14} color="#0052CC" style={{ marginRight: 6 }} />
         <Text style={styles.goalText}>
-          Milestones: <Text style={{ fontWeight: '700' }}>60 Duties Goal</Text>
+          {t('Milestones')}: <Text style={{ fontWeight: '700' }}>60 {t('Duties Goal')}</Text>
         </Text>
       </View>
     </View>
